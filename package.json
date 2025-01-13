@@ -1,4 +1,6 @@
 {
+  "name": "hestiamed",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "next build",
@@ -6,11 +8,44 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "latest",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@mui/material": "^6.3.0",
+    "@mui/styles": "^6.3.0",
+    "@mui/x-date-pickers": "^7.23.3",
+    "@nextui-org/react": "^2.2.9",
+    "@syncfusion/ej2-react-dropdowns": "^28.1.36",
+    "babel": "^6.23.0",
+    "bcryptjs": "^2.4.3",
+    "crypto": "^1.0.1",
+    "dayjs": "^1.11.13",
+    "dotenv": "^16.4.7",
+    "fuse.js": "^6.6.2",
+    "glob": "^8.1.0",
+    "mongoose": "^8.9.4",
+    "next": "^15.1.4",
+    "next-auth": "^4.24.11",
+    "node-schedule": "^2.1.1",
+    "nodemailer": "^6.9.16",
+    "react": "^18.3.1",
+    "react-big-calendar": "^1.17.1",
+    "react-cookie": "^7.2.2",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.4.0",
+    "react-icons-kit": "^2.0.0",
+    "react-quill": "^2.0.0",
+    "react-router-dom": "^7.1.0",
+    "react-spring": "^9.7.3",
+    "run": "^1.5.0",
+    "three": "^0.171.0"
   },
   "engines": {
     "node": ">=18"
+  },
+  "devDependencies": {
+    "@svgr/webpack": "^8.1.0"
   }
 }
