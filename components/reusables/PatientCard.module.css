@@ -1,0 +1,53 @@
+.cardHeader h3{
+    display: flex;
+    align-items: center;
+}
+
+.patientCard{
+    min-width: 500px;
+}
+
+.caret{
+    margin-top: 8px;
+    width: 30px;
+    height: 30px;
+}
+
+.rotate{
+    transform: rotate(180deg);
+}
+
+.patientCard {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .cardHeader {
+    background-color: #f5f5f5;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .cardContent {
+    padding: 10px;
+  }
+  
+  .cardRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    height: 40px;
+  }
+  
+  .cardRow:nth-child(odd) {
+    background-color: #f0f0f0; /* Hellgrauer Hintergrund */
+  }
+  
+  .cardRow:nth-child(even) {
+    background-color: #ffffff; /* Weißer Hintergrund */
+  }
+  

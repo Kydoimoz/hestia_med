@@ -1,0 +1,6 @@
+{ "patients": [
+    { "id": 1, "name": "Ahmed Khaled" },
+    { "id": 2, "name": "Fatima Zahra" },
+    { "id": 3, "name": "Yusuf Ali" }
+  ]
+}
