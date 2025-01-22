@@ -49,7 +49,7 @@ export default function PrivacyPolicy() {
 
         <h2 className="text-2xl font-semibold text-gray-900 mt-6">4. Rechtsgrundlage der Verarbeitung</h2>
         <p className="text-lg text-gray-700 mb-4">
-          Die Verarbeitung Ihrer personenbezogenen Daten erfolgt auf Grundlage der folgenden Rechtsgrundlagen der DSGVO:
+          Die Verarbeitung Ihrer personenbezogenen Daten erfolgt auf Grundlage der folgenden Rechtsgrundlagen der DSGVO.:
         </p>
         <ul className="list-disc pl-6">
           <li>Erfüllung eines Vertrages</li>
