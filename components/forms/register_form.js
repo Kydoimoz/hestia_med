@@ -11,9 +11,6 @@ import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import {Icon} from 'react-icons-kit';
-import {eyeOff} from 'react-icons-kit/feather/eyeOff';
-import {eye} from 'react-icons-kit/feather/eye';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Poppins, Montserrat, Roboto } from "next/font/google";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import Stack from '@mui/material/Stack';
@@ -99,9 +96,6 @@ export default function RegisterForm() {
     : null;
 
 console.log("Formatted Birth Date:", formattedDate);
-
-    const [icon, setIcon] = useState(eyeOff);
-    const [type, setType] = useState('password');
 
 
     const [selectedCountry, setSelectedCountry] = useState('');
@@ -661,7 +655,7 @@ console.log("Formatted Birth Date:", formattedDate);
                                        <span className={classes.required}>*</span>
                                    </label>
                                        <input id="password" className={`${lightRoboto.className} ${classes.submit_input}`} type={visible ? "text" : "password"} aria-autocomplete="none"placeholder="Create password" name="password" value={state.password} onChange={handleChangeState} minLength={6} required/>
-                                       <div className={classes.eye_icon}><Icon  icon={visible ? eyeOff : eye} size={25} className={`${classes.pw_toggle} absolute mr-10`} onClick={handleToggle}/></div>
+                    
                                    </label>
                                  <div>
                             <label style={{marginLeft: "0%"}}>

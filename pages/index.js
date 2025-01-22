@@ -10,8 +10,6 @@ import Footer from "../components/footer";
 import Testimonials from "../components/testimonials";
 import Cta from "../components/cta";
 import Faq from "../components/faq";
-import PopupWidget from "../components/popupWidget";
-
 //import dynamic from "next/dynamic";
 
 // const Video = dynamic(() => import("../components/video"));
@@ -21,8 +19,6 @@ import PopupWidget from "../components/popupWidget";
 // const Testimonials = dynamic(() => import("../components/testimonials"));
 // const Cta = dynamic(() => import("../components/cta"));
 // const Faq = dynamic(() => import("../components/faq"));
-
-// const PopupWidget = dynamic(() => import("../components/popupWidget"));
 
 export default function Home() {
   return (
@@ -66,7 +62,6 @@ Die Cloud-basierte Architektur sorgt für eine sichere und jederzeit zugänglich
       <Faq />
       <Cta />
       <Footer />
-      <PopupWidget />
     </>
   );
 }

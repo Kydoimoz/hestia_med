@@ -10,7 +10,6 @@ import Footer from "../components/footer";
 import Testimonials from "../components/testimonials";
 import Cta from "../components/cta";
 import Faq from "../components/faq";
-import PopupWidget from "../components/popupWidget";
 import Appointments from "../components/pages/appointments";
 
 //import dynamic from "next/dynamic";
@@ -22,8 +21,6 @@ import Appointments from "../components/pages/appointments";
 // const Testimonials = dynamic(() => import("../components/testimonials"));
 // const Cta = dynamic(() => import("../components/cta"));
 // const Faq = dynamic(() => import("../components/faq"));
-
-// const PopupWidget = dynamic(() => import("../components/popupWidget"));
 
 export default function Home() {
   return (
