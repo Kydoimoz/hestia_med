@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import * as React from "react";
 import mongoose from "mongoose";
 import connectDB from "../../../../libs/medical_db";
@@ -30,8 +30,3 @@ export default async function handler(req, res) {
         return res.status(500).json({ error: `Internal Server Error: ${error.message}` });
     }
 }
-=======
-version https://git-lfs.github.com/spec/v1
-oid sha256:28e3ee715a97127a3d6684771f960f6177597b67f865e3d4bd9cdff5d0a7dd44
-size 1165
->>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

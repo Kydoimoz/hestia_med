@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req, res) {
@@ -14,8 +14,3 @@ export default async function handler(req, res) {
     res.status(405).json({ message: 'Method Not Allowed' });
   }
 }
-=======
-version https://git-lfs.github.com/spec/v1
-oid sha256:91d98e28664185eec92359240237748b940bcb9536298a893b0a454e9da7fec8
-size 465
->>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

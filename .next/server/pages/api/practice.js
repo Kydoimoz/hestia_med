@@ -1,7 +1,0 @@
-<<<<<<< HEAD
-"use strict";(()=>{var e={};e.id=5576,e.ids=[5576],e.modules={75600:e=>{e.exports=require("next/dist/compiled/next-server/pages-api.runtime.prod.js")},96762:(e,t)=>{Object.defineProperty(t,"M",{enumerable:!0,get:function(){return function e(t,r){return r in t?t[r]:"then"in t&&"function"==typeof t.then?t.then(t=>e(t,r)):"function"==typeof t&&"default"===r?t:void 0}}})},58575:(e,t,r)=>{r.r(t),r.d(t,{config:()=>d,default:()=>u,routeModule:()=>P});var n={};r.r(n),r.d(n,{default:()=>s});var i=r(89947),a=r(2706),o=r(96762);async function s(e,t){if("POST"===e.method)try{e.body,t.status(201).json({message:"Praxis erfolgreich registriert!"})}catch(e){t.status(500).json({message:"Fehler beim Speichern der Praxisdaten"})}else t.status(405).json({message:"Method Not Allowed"})}require("next/dist/lib/import-next-warning");let u=(0,o.M)(n,"default"),d=(0,o.M)(n,"config"),P=new i.PagesAPIRouteModule({definition:{kind:a.A.PAGES_API,page:"/api/practice",pathname:"/api/practice",bundlePath:"",filename:""},userland:n})},2706:(e,t)=>{Object.defineProperty(t,"A",{enumerable:!0,get:function(){return r}});var r=function(e){return e.PAGES="PAGES",e.PAGES_API="PAGES_API",e.APP_PAGE="APP_PAGE",e.APP_ROUTE="APP_ROUTE",e.IMAGE="IMAGE",e}({})},89947:(e,t,r)=>{e.exports=r(75600)}};var t=require("../../webpack-api-runtime.js");t.C(e);var r=t(t.s=58575);module.exports=r})();
-=======
-version https://git-lfs.github.com/spec/v1
-oid sha256:d56ac6ad138483645abe7fc8d2596bd5771f51b30883f7e5a88b4e5bd1fc56bc
-size 1365
->>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

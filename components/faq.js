@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import React from "react";
 import Container from "./container";
 import { Disclosure } from "@headlessui/react";
@@ -60,8 +60,3 @@ const faqdata = [
     answer: "Ja, Hestia Med entspricht den geltenden Datenschutzvorschriften wie der DSGVO, sodass die Daten Ihrer Patienten immer sicher und datenschutzkonform behandelt werden.",
   },
 ];
-=======
-version https://git-lfs.github.com/spec/v1
-oid sha256:4b32a15bf0d373e71f50840e5cf608ec618153cf9260cfb5d7d87a7558f9a3c5
-size 3118
->>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

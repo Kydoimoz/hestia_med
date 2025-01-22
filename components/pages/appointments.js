@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import React, { useState } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
@@ -348,8 +348,3 @@ export default function Appointments() {
     </div>
   );
 }
-=======
-version https://git-lfs.github.com/spec/v1
-oid sha256:70359a6d10db3eeb49c4b51c05e85477cb99b2af92ce374cd91bc7370e54995d
-size 11094
->>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

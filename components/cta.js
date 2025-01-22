@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import React from "react";
 import Container from "./container";
 import Link from "next/link";
@@ -34,8 +34,3 @@ export default function Cta() {
     </Container>
   );
 }
-=======
-version https://git-lfs.github.com/spec/v1
-oid sha256:3642bda55460ef18ff82d7da82a1e8c4a3484e6501794876d033717b50a1599b
-size 1242
->>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import connectDB from "../../../../libs/medical_db";
 import { NextResponse } from "next/server";
 import Patient from "../../../../models/Patient";
@@ -41,8 +41,3 @@ export default async function DELETE(req) {
     return NextResponse.json({ message: "Interner Serverfehler." }, { status: 500 });
   }
 }
-=======
-version https://git-lfs.github.com/spec/v1
-oid sha256:593e203ebba04ab5e748828b200d863fbb44d09562b9784647b5ebb11e69e041
-size 1548
->>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

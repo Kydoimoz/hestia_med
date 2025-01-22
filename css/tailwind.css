@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,8 +9,3 @@
     @apply dark:bg-trueGray-900;
   }
 }
-=======
-version https://git-lfs.github.com/spec/v1
-oid sha256:2509000f50afd9ecdda55adf1b2c1e68ffaaf77dfb38130831c8fee5231ecd63
-size 129
->>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

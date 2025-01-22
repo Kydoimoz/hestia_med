@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import React from "react";
 import Container from "./container";
 
@@ -30,8 +30,3 @@ export default function SectionTitle(props) {
     </Container>
   );
 }
-=======
-version https://git-lfs.github.com/spec/v1
-oid sha256:b5c6b368b453e8f5a61509dba636b784179a8144b86c1fdebb0e249c1d063afe
-size 909
->>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 "use client";
 import { useState } from "react";
 import { useGlobalSession } from "../../context/SessionContext";
@@ -231,8 +231,3 @@ export default function AnamneseForm({ document, onSave, onClose, mode }) {
       </form>
     );
   }
-=======
-version https://git-lfs.github.com/spec/v1
-oid sha256:bcd37fb61788ade9891dfad8747e5416170ecce1008e84f028fecb789bf1b69d
-size 7233
->>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import connectDB from "../../../libs/medical_db";
 import StaffRoles from "../../../models/StaffRoles";
 export default async function handler(req, res) {
@@ -37,8 +37,3 @@ export default async function handler(req, res) {
     res.status(405).json({ message: 'Method Not Allowed' });
   }
 }
-=======
-version https://git-lfs.github.com/spec/v1
-oid sha256:f0dfa06f69ee418756ff3e9457d342a3ddec12483ca8741388b0833451246585
-size 1481
->>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

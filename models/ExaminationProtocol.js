@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import mongoose from "mongoose";
 import Schema from "mongoose";
 
@@ -122,8 +122,3 @@ examination_protocol.index({ patient: 1, examinationDate: -1 });
 const ExaminationProtocol = mongoose.models.ExaminationProtocol || mongoose.model('ExaminationProtocol', examination_protocol);
 
 module.exports = ExaminationProtocol;
-=======
-version https://git-lfs.github.com/spec/v1
-oid sha256:b5770bc3b1e3dfc240a5139e0731c57e52fccecd83f323c9c7df78a60b3bf7c5
-size 2348
->>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

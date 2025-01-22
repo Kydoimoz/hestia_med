@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -41,10 +41,3 @@ img {
   max-width: 100%;
   height: auto;
 }
-
-
-=======
-version https://git-lfs.github.com/spec/v1
-oid sha256:70096d68051004e3847623c922745273a7b70281bf59d53884539ef362c8363e
-size 525
->>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

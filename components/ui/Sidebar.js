@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import classes from "./Sidebar.module.css";
 import AddPatient from "../../public/icons/User_Add.svg";
 import Calendar from "../../public/icons/Calendar_Days.svg";
@@ -200,8 +200,3 @@ function SidebarLink({ icon: Icon, label, isActive, onClick }) {
     </div>
   );
 }
-=======
-version https://git-lfs.github.com/spec/v1
-oid sha256:c3d642118cbe2468d379582bcaa7d356e7b87461e2defb37e6798a5c21bb328b
-size 6383
->>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

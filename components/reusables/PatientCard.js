@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import React, { useState } from "react";
 import classes from "./PatientCard.module.css";
 import CaretDown from "./../../public/icons/Caret_Down_MD.svg";
@@ -81,8 +81,3 @@ export default function PatientCard({ patientData, onDelete, onEdit }) {  // pat
     </div>
   );
 }
-=======
-version https://git-lfs.github.com/spec/v1
-oid sha256:45fea596bc495d84c2915ad1d95a0420581129f828791297ad38c6f3128b3910
-size 3296
->>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

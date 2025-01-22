@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import { useState } from "react";
 import Container from "./container";
 
@@ -39,8 +39,3 @@ export default function Video() {
     </Container>
   );
 }
-=======
-version https://git-lfs.github.com/spec/v1
-oid sha256:fb4327334a957e46d735b01ec318c8e0f2b2265deede1de45938e71c4ac3da9e
-size 1514
->>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

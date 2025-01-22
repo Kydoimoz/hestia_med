@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use client";
 import React, { useState, useEffect } from "react";
 import classes from "./Header.module.css";
@@ -365,8 +364,3 @@ export default function Header() {
     </header>
   );
 }
-=======
-version https://git-lfs.github.com/spec/v1
-oid sha256:594bebe0057789d4bd07d30dc3d7c0367b570de5c9d8f50d61662dfa8f70c5e2
-size 11915
->>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

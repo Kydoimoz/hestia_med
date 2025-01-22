@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import Head from "next/head";
 import Settings from "./../../components/pages/settings";
 export default function Einstellungen() {
@@ -14,8 +14,3 @@ export default function Einstellungen() {
     </>
   );
 }
-=======
-version https://git-lfs.github.com/spec/v1
-oid sha256:d1280807ff1f57c52574445d488be8003a3d9cfe80138f8b181133fe7fd9f213
-size 459
->>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

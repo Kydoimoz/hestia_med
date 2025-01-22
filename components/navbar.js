@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import Link from "next/link";
 import ThemeChanger from "./DarkSwitch";
 import { Disclosure } from "@headlessui/react";
@@ -96,8 +96,3 @@ export default function Navbar() {
     </div>
   );
 }
-=======
-version https://git-lfs.github.com/spec/v1
-oid sha256:7faa387562f6418dbc8478347c21757469f694634bfbc5430a2e0658ead823c9
-size 4033
->>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

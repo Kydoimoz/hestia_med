@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import mongoose from "mongoose";
 import Schema from "mongoose";
 
@@ -58,8 +58,3 @@ const Patient = mongoose.models.Patient || mongoose.model('Patient', patientSche
 
 module.exports = Patient;
 
-=======
-version https://git-lfs.github.com/spec/v1
-oid sha256:ca7825dac197bfd8948e7d14755984160bb0c903f96e846977fb3067c95be971
-size 1110
->>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a
