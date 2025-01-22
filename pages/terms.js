@@ -85,7 +85,7 @@ const AGB = () => {
           Rechtsgeschäft zu Zwecken abschließt, die überwiegend weder ihrer gewerblichen noch ihrer selbständigen beruflichen Tätigkeit
           zugerechnet werden können:
         </p>
-        <h3 className="text-xl font-semibold mt-4">Widerrufsbelehrung</h3>
+        <h3 className="text-xl font-semibold mt-4">Widerrufsbelehrung.</h3>
         <p>
           Widerrufsrecht
         </p>
