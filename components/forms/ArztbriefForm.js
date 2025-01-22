@@ -1,3 +1,4 @@
+import classes from "./AnamneseForm.module.css"
 import { useState } from "react";
 
 export default function ArztbriefForm({ document, onSave, mode }) {
@@ -42,6 +43,7 @@ export default function ArztbriefForm({ document, onSave, mode }) {
         value={formData.title}
         onChange={handleChange}
         placeholder="Titel des Arztbriefs"
+        className={classes.input}
       />
 
       <input
@@ -49,6 +51,7 @@ export default function ArztbriefForm({ document, onSave, mode }) {
         value={formData.patientName}
         onChange={handleChange}
         placeholder="Name des Patienten"
+        className={classes.input}
       />
 
       <input
@@ -56,6 +59,7 @@ export default function ArztbriefForm({ document, onSave, mode }) {
         value={formData.patientID}
         onChange={handleChange}
         placeholder="Patienten-ID"
+        className={classes.input}
       />
 
       <input
@@ -63,9 +67,10 @@ export default function ArztbriefForm({ document, onSave, mode }) {
         name="dateOfBirth"
         value={formData.dateOfBirth}
         onChange={handleChange}
+        className={classes.input}
       />
 
-      <select name="gender" value={formData.gender} onChange={handleChange}>
+      <select name="gender" className={classes.input} value={formData.gender} onChange={handleChange}>
         <option value="">Geschlecht wählen</option>
         <option value="male">Männlich</option>
         <option value="female">Weiblich</option>
@@ -77,6 +82,7 @@ export default function ArztbriefForm({ document, onSave, mode }) {
         value={formData.address}
         onChange={handleChange}
         placeholder="Adresse des Patienten"
+        className={classes.input}
       />
 
       <textarea
@@ -84,6 +90,7 @@ export default function ArztbriefForm({ document, onSave, mode }) {
         value={formData.diagnosis}
         onChange={handleChange}
         placeholder="Diagnose"
+        className={classes.input}
       />
 
       <textarea
@@ -91,6 +98,7 @@ export default function ArztbriefForm({ document, onSave, mode }) {
         value={formData.findings}
         onChange={handleChange}
         placeholder="Befunde"
+        className={classes.input}
       />
 
       <textarea
@@ -98,6 +106,7 @@ export default function ArztbriefForm({ document, onSave, mode }) {
         value={formData.therapy}
         onChange={handleChange}
         placeholder="Therapie"
+        className={classes.input}
       />
 
       <textarea
@@ -105,6 +114,7 @@ export default function ArztbriefForm({ document, onSave, mode }) {
         value={formData.medication}
         onChange={handleChange}
         placeholder="Medikation"
+        className={classes.input}
       />
 
       <textarea
@@ -112,6 +122,7 @@ export default function ArztbriefForm({ document, onSave, mode }) {
         value={formData.recommendations}
         onChange={handleChange}
         placeholder="Empfehlungen"
+        className={classes.input}
       />
 
       <input
@@ -120,6 +131,7 @@ export default function ArztbriefForm({ document, onSave, mode }) {
         value={formData.followUp}
         onChange={handleChange}
         placeholder="Nachfolgetermin"
+        className={classes.input}
       />
 
       <input
@@ -127,6 +139,7 @@ export default function ArztbriefForm({ document, onSave, mode }) {
         value={formData.doctorName}
         onChange={handleChange}
         placeholder="Name des Arztes"
+        className={classes.input}
       />
 
       <input
@@ -134,6 +147,7 @@ export default function ArztbriefForm({ document, onSave, mode }) {
         value={formData.doctorSignature}
         onChange={handleChange}
         placeholder="Arztsignatur"
+        className={classes.input}
       />
 
       <input
@@ -142,9 +156,11 @@ export default function ArztbriefForm({ document, onSave, mode }) {
         value={formData.issueDate}
         onChange={handleChange}
         placeholder="Ausstellungsdatum"
+        className={classes.input}
       />
 
-      <button type="submit">Speichern</button>
+{mode !== "view" && (
+      <button type="submit">Speichern</button>)}
     </form>
   );
 }

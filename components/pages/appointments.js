@@ -79,14 +79,18 @@ export default function Appointments() {
           throw new Error('Unerwartetes Format der API-Daten');
         }
   
+        // Prüfe die Struktur der API-Daten, um sicherzustellen, dass patientId populiert wird
+        console.log("API Antwort:", data.appointments);
+  
         // Formatieren der Events
         const formattedEvents = data.appointments.map((appointment) => ({
           id: appointment._id,
-          title: `${appointment.patient} - ${appointment.purpose}`, // Angepasste Darstellung
+          title: `${appointment.patientId?.full_name || 'Unbekannt'} - ${appointment.purpose}`,
           start: new Date(appointment.startTime),
           end: new Date(appointment.endTime),
-          patient: appointment.patient,
+          patient: appointment.patientId?.full_name || 'Unbekannt',
           purpose: appointment.purpose,
+          patientId: appointment.patientId, // Achte darauf, dass patientId korrekt übergeben wird
         }));
   
         console.log("Formatierte Events:", formattedEvents);
@@ -101,11 +105,13 @@ export default function Appointments() {
     };
   
     fetchAppointments();
-
+  
     return () => {
       isMounted = false; // Cleanup bei Unmount
     };
   }, []);
+  
+  
   
 
 
@@ -113,23 +119,24 @@ export default function Appointments() {
   const [patients, setPatients] = useState([]);  
 
 
+  const fetchPatients = async () => {
+    try {
+      const response = await fetch(`/api/GET/patients?practice_id=${practice_id}`,{
+        method: "GET",
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const data = await response.json();
+      console.log("PATIENT DATA ", data);
+      setPatients(data);
+    } catch (error) {
+      console.error('Fehler beim Abrufen der Patienten:', error);
+    }
+  };
+
+
   useEffect(() => {
-    const fetchPatients = async () => {
-      try {
-        const response = await fetch(`/api/GET/patients?practice_id=${practice_id}`,{
-          method: "GET",
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        });
-        const data = await response.json();
-        console.log("PATIENT DATA ", data);
-        setPatients(data);
-      } catch (error) {
-        console.error('Fehler beim Abrufen der Patienten:', error);
-      }
-    };
-    
     fetchPatients();
   }, [id]);
 
@@ -149,8 +156,9 @@ export default function Appointments() {
 
   const handleSelectEvent = (event) => {
     setSelectedEvent(event);
-    console.log("Event selected: " + event)
-    setInfoModalOpen(true); // Priorisiert das Öffnen des Info-Modals
+    console.log("Event selected:", event);
+    console.log("Patient ID:", event.patientId); // Überprüfe die patientId
+    setInfoModalOpen(true);
   };
 
   const handleInputChange = (e) => {
@@ -204,6 +212,7 @@ export default function Appointments() {
       setEvents([
         ...events,
         {
+          patientId: formData.patientId?._id,
           id: appointment._id || Date.now(), // Fallback-ID, falls _id fehlt
           title: `${formData.patientId} - ${formData.purpose}`,
           startTime: new Date(formData.startTime),
@@ -213,6 +222,7 @@ export default function Appointments() {
         },
       ]);
       closeModal();
+      window.location.reload();
     } catch (error) {
       console.error('Fehler beim Speichern des Termins:', error.message);
     }
@@ -234,10 +244,6 @@ export default function Appointments() {
     closeInfoModal();
   };
 
-  useEffect(() => [
-    console.log("events"+events)
-  ], [])
-
   return (
     <div className={`${classes.divContainer}`}>
 <Calendar
@@ -250,7 +256,7 @@ export default function Appointments() {
   defaultView="week"
   selectable
   onSelectSlot={handleSelectSlot}
-  onSelectEvent={handleSelectEvent} 
+  onSelectEvent={(event) => handleSelectEvent(event)} 
   min={new Date(0, 0, 0, 8)}
   max={new Date(0, 0, 0, 18)}
 />
@@ -325,7 +331,7 @@ export default function Appointments() {
             <p><strong>Zweck:</strong> {selectedEvent.purpose}</p>
 
             <div className={classes.buttonContainer}>
-              <button onClick={() => router.push(`/patient/${selectedEvent.id}`)} className={classes.viewButton}>
+              <button onClick={() => router.push(`/patient/${selectedEvent.patientId?._id}`)} className={classes.viewButton}>
                 Zum Patienten
               </button>
               <button onClick={() => deleteAppointment(selectedEvent.id)} className={classes.deleteButton}>

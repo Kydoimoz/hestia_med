@@ -1,0 +1,127 @@
+/* Form Container */
+.formularContainer {
+    background-color: #f4f4f4;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    box-sizing: border-box;
+    margin: auto;
+  }
+  
+  /* Hauptüberschrift */
+  .formularContainer h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #AE9B7F; /* Hauptfarbe */
+  }
+  
+  /* Zwischenüberschriften (Labels) */
+  .formularContainer label {
+    font-size: 1.1rem; /* Größere Schrift für bessere Lesbarkeit */
+    font-weight: 600; /* Dickere Schrift */
+    color: #5A4E3A; /* Eine etwas dunklere Farbe für bessere Sichtbarkeit */
+    margin-bottom: 5px; /* Etwas Abstand zum Input-Feld */
+    display: block; /* Label soll über dem Input-Feld erscheinen */
+  }
+  
+  /* Eingabefelder */
+  .formularContainer input,
+  .formularContainer select,
+  .formularContainer textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #AE9B7F; /* Hauptfarbe */
+    border-radius: 10px;
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+  
+  .formularContainer input:focus,
+  .formularContainer select:focus,
+  .formularContainer textarea:focus {
+    border-color: #8c7b55; /* Dunklere Farbe */
+    box-shadow: 0 0 8px rgba(174, 155, 127, 0.5); /* Hauptfarbe mit transparenter Umrandung */
+  }
+  
+  .formularContainer textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  /* Submit Button */
+  .submitButton {
+    background-color: #AE9B7F; /* Hauptfarbe */
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    width: 100%;
+  }
+  
+  .submitButton:hover {
+    background-color: #8c7b55; /* Dunklere Farbe */
+  }
+  
+  /* Responsivität */
+  @media (max-width: 768px) {
+    .formularContainer {
+      padding: 30px;
+    }
+  
+    .formularContainer h2 {
+      font-size: 1.8rem;
+    }
+  
+    .submitButton {
+      font-size: 1rem;
+    }
+  }
+  
+  /* Fehler Container */
+  .errorContainer {
+    color: red;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .error {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  /* Speichern-Button */
+  .saveButton {
+    .submitButton {
+      background-color: #AE9B7F;
+      color: #ffffff;
+      padding: 16px;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      width: 100%;
+      box-shadow: 0 8px 20px rgba(174, 155, 127, 0.3);
+    }
+  
+    .submitButton:hover {
+      background-color: #8C7B5A;
+      box-shadow: 0 12px 30px rgba(142, 125, 102, 0.4);
+    }
+  
+    .submitButton:active {
+      background-color: #F1E1C6;
+      box-shadow: none;
+    }
+  }
+  

@@ -9,7 +9,10 @@ import AUForm from "../forms/AUForm";
 import RezeptForm from "../forms/RezeptForm";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-
+ 
+ 
+ 
+ 
 const forms = [
   { label: "Anamnese", value: "ana", component: AnamneseForm },
   { label: "Untersuchungsprotokoll", value: "unt", component: UntersuchungsprotokollForm },
@@ -17,12 +20,15 @@ const forms = [
   { label: "Rezept", value: "rez", component: RezeptForm },
   { label: "Arbeitsunfähigkeitsbescheinigung", value: "aub", component: AUForm },
 ];
-
+ 
 export default function Patient() {
  const {data: session, status} = useSession();
   const router = useRouter();
   const { id } = router.query;
   const [patientData, setPatientData] = useState(null);
+  const [editModal, setEditModal] = useState()
+  const [selectedDocument, setSelectedDocument] = useState();
+  const [errors, setErrors] = useState();
   useEffect(() => {
     if (status === "unauthenticated") {
         router.push("/login");
@@ -39,7 +45,7 @@ export default function Patient() {
                         "Content-Type": "application/json"
                     }
                 });
-
+ 
                 if (res.ok) {
                     const data = await res.json();
                     setPatientData(data);
@@ -54,15 +60,56 @@ export default function Patient() {
             console.error(err);
         }
     };
-
+ 
     fetchPatient();
 }, [router.query.id]);
+ 
+ 
 
+useEffect(() => {
+  console.log(selectedDocument)
+}, [selectedDocument])
+ 
+
+ /* const [sampleDocuments, setSampleDocuments] = useState([
+    {
+      id: 1,
+      date: "2024-10-07",
+      type: "ana",
+      title: "Anamnese - Orthopädie und orthopädische Chirurgie",
+      content: "Beispielinhalte der Anamnese",
+    },
+    {
+      id: 2,
+      date: "2024-10-07",
+      type: "bri",
+      title: "Turnbefreiung",
+    },
+    {
+      id: 3,
+      date: "2024-10-08",
+      type: "unt",
+      title: "I10 - Hypertonie",
+    },
+  ]);*/
+ 
   const [sampleDocuments, setSampleDocuments] = useState([]);
   const [documents, setDocuments] = useState([]); // Für die gefilterten Dokumente
-  
+ 
   const [loading, setLoading] = useState(false); // Zustand für das Laden
 
+    const [formData, setFormData] = useState({
+      Name: patientData?.full_name,
+      Krankenversicherung: "",
+      Privat: "Nein",
+      Geburtsdatum: "",
+      Geschlecht: "",
+      Adresse: "",
+      Telefonnummer: "",
+      Email: "",
+      Notfallkontakt: "",
+    });
+ 
   useEffect(() => {
     const fetchDocuments = async () => {
       try {
@@ -74,17 +121,17 @@ export default function Patient() {
               "Content-Type": "application/json",
             },
           });
-  
+ 
           if (response.ok) {
             const data = await response.json();
-  
+ 
             if (Array.isArray(data)) {
               // Konvertiere das Datum für jedes Dokument
               const documentsWithDate = data.map((doc) => ({
                 ...doc,
                 createdAt: doc.createdAt ? new Date(doc.createdAt) : null,
               }));
-  
+ 
               setSampleDocuments(documentsWithDate); // State-Update mit API-Daten
               setDocuments(documentsWithDate); // Dokumente initialisieren
             } else {
@@ -102,12 +149,12 @@ export default function Patient() {
         setLoading(false); // Ladevorgang abgeschlossen
       }
     };
-  
+ 
     fetchDocuments();
   }, [id]); // Effekt wird nur bei Änderung von 'id' ausgelöst
-  
-
-
+ 
+ 
+ 
   // SampleDocuments immer synchron mit documents halten
   useEffect(() => {
       setDocuments(sampleDocuments);
@@ -116,7 +163,7 @@ export default function Patient() {
   console.log("MEDICAL DOCUMENTS: ", documents);
   const ids = documents.map(doc => doc._id);
 console.log(ids); // Ausgabe: ["1", "2", "3"]
-
+ 
   const [deleteModal, setDeleteModal] = useState({ open: false, document_id: documents._id});
   console.log("Delete Modal Object ", deleteModal)
   const [selectedForm, setSelectedForm] = useState(forms[0]); // Default to the first form
@@ -126,7 +173,7 @@ console.log(ids); // Ausgabe: ["1", "2", "3"]
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [modalOpen, setModalOpen] = useState(false);
-
+ 
   const handleKeyDown = (e) => {
     if (e.key === " ") {
       const matchedForm = forms.find(
@@ -145,18 +192,21 @@ console.log(ids); // Ausgabe: ["1", "2", "3"]
       e.preventDefault();
     }
   };
-
+ 
   const handleOpenDocument = (doc) => {
     setCurrentDocument(doc);
+    console.log("DES IS DOC: " , doc)
+    console.log("CURRENT ", documents);
     setSelectedForm(forms.find((form) => form.value === doc.type) || forms[0]);
     setFormMode("view"); // Open in view mode
     setModalOpen(true);
+    setSelectedDocument(doc);
   };
-
+ 
   const handleEditDocument = () => {
     setFormMode("edit");
   };
-
+ 
   const delete_document = async (id) => {
     try {
         const response = await fetch(`/api/DELETE/medical_record/${id}`, {
@@ -177,8 +227,10 @@ console.log(ids); // Ausgabe: ["1", "2", "3"]
         return null;
     }
 };
-
+ 
 const handleDelete = async () => {
+    setDeleteModal(false);
+    window.location.reload();
     console.log("Attempting to delete document with ID:", deleteModal.document_id);
     try {
         const deletedData = await delete_document(deleteModal.document_id);
@@ -187,49 +239,144 @@ const handleDelete = async () => {
             setDocuments((prev) => prev.filter((doc) => doc._id !== deleteModal.document_id));
             setModalOpen(false);
             console.log("Document deleted successfully!");
+            
+            
         } else {
             console.error("Error: Dokument konnte nicht gelöscht werden.");
         }
+        
     } catch (error) {
         console.error('Fehler beim Löschen:', error);
     }
+    
 };
 
+const delete_patient = async (id) => {
+  try {
+      const response = await fetch(`/api/DELETE/patient/${id}`, {
+          method: "DELETE",
+          headers: {
+              "Content-Type": "application/json",
+          },
+      });
+      if (!response.ok) {
+          throw new Error("Failed to fetch...");
+      }
+      // Hole die Antwort vom Server (wenn benötigt)
+      const getdeletedData = await response.json();
+      console.log("Data to delete: ", getdeletedData);
+      router.replace("/appointment")
+      return getdeletedData;
+  } catch (err) {
+      console.error("Error: ", err);
+      return null;
+  }
+};
+
+const handleDeletePatient = async () => {
+  setDeleteModal(false);
+  window.location.reload();
+  console.log("Attempting to delete document with ID:", id);
+  try {
+      const deletedData = await delete_patient(id);
+      console.log("DELETED DATA: ", deletedData);
+      if (deletedData) {
+          setDocuments((prev) => prev.filter((doc) => doc._id !== id));
+          setModalOpen(false);
+          console.log("Document deleted successfully!");
+          
+          
+      } else {
+          console.error("Error: Dokument konnte nicht gelöscht werden.");
+      }
+      
+  } catch (error) {
+      console.error('Fehler beim Löschen:', error);
+  }
   
-  
+};
+
+
+ 
+ 
+ 
   const openDeleteModal = (document) => {
     if (!document || !document._id) {
       console.error("Ungültiges Dokument oder fehlende ID.", document);
       return;
     }
     console.log("Selected document ID: ", document._id); // Logging hier
-    setDeleteModal({ open: false, document_id: deleteModal.document_id });
+    setDeleteModal({ open: true, document_id: document._id });
   };
-  
-  
+ 
+ 
   const handleModalClose = () => {
     setModalOpen(false);
     setSelectedForm(null);
     setCurrentDocument(null);
+    setSelectedDocument(null);
   };
 
-  const handleSave = (updatedDocument) => {
-    if (currentDocument) {
-      // Update existing document
-      setDocuments((prev) =>
-        prev.map((doc) => (doc.id === currentDocument.id ? updatedDocument : doc))
-      );
-    } else {
-      // Add new document
-      let newDoc = {
-        ...updatedDocument,
-        id: Date.now(),
-        date: new Date().toISOString().split("T")[0],
-        type: selectedForm.value,
-      };
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    const validationErrors = validate();
+    console.log("Formdata before update", formData)
+    if (Object.keys(validationErrors).length === 0) {
+      try {
+        const response = await fetch(`/api/GET/patients/${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            full_name: formData.Name,
+            insurance: formData.Krankenversicherung,
+            is_private: formData.Privat,
+            gender: formData.Geschlecht,
+            birth_date: formData.Geburtsdatum,
+            address: formData.Adresse,
+            phoneNumber: formData.Telefonnummer,
+            email: formData.Email,
+            emergency_contact: formData.Notfallkontakt,
+          }),
+        });
   
-      // Erweiterung für Anamnese-Dokument
-      if (updatedDocument.type === "ana") {
+        if (response.ok) {
+          console.log("Patientendaten aktualisiert:", formData);
+          setEditModal(false);
+          window.location.reload();
+        } else {
+          console.error("Fehler beim Aktualisieren der Patientendaten:", response.statusText);
+        }
+      } catch (err) {
+        console.error("Error:", err.message);
+      }
+    } else {
+      setErrors(validationErrors);
+    }
+  };
+  
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+ 
+  const handleSave = (updatedDocument) => {
+  
+    // Prüfen, welcher Typ ausgewählt ist
+    let newDoc = {
+      ...updatedDocument,
+      id: Date.now(),
+      date: new Date().toISOString().split("T")[0],
+      type: updatedDocument.type, // Der Typ wird direkt aus dem Formular verwendet
+    };
+  
+    console.log("Neues Dokument: ", newDoc);
+  
+    // Erweiterung für spezifische Typen (falls nötig)
+    switch (updatedDocument.type) {
+      case "ana": // Anamnese
         newDoc = {
           ...newDoc,
           firstName: updatedDocument.firstName || "",
@@ -248,34 +395,137 @@ const handleDelete = async () => {
           bloodPressure: updatedDocument.bloodPressure || "",
           additionalNotes: updatedDocument.additionalNotes || "",
         };
-      }
+        break;
   
-      // Neues Dokument dem Array hinzufügen
+      case "bri": // Arztbrief
+        newDoc = {
+          ...newDoc,
+          patientName: updatedDocument.patientName || "",
+          patientID: updatedDocument.patientID || "",
+          dateOfBirth: updatedDocument.dateOfBirth || "",
+          gender: updatedDocument.gender || "",
+          address: updatedDocument.address || "",
+          diagnosis: updatedDocument.diagnosis || "",
+          findings: updatedDocument.findings || "",
+          therapy: updatedDocument.therapy || "",
+          medication: updatedDocument.medication || "",
+          recommendations: updatedDocument.recommendations || "",
+          followUp: updatedDocument.followUp || "",
+          doctorName: updatedDocument.doctorName || "",
+          doctorSignature: updatedDocument.doctorSignature || "",
+          issueDate: updatedDocument.issueDate || new Date().toISOString().split("T")[0],
+        };
+        break;
+  
+      case "aub": // Arbeitsunfähigkeitsbescheinigung
+        newDoc = {
+          ...newDoc,
+          patientFirstName: updatedDocument.patientFirstName || "",
+          patientLastName: updatedDocument.patientLastName || "",
+          birthDate: updatedDocument.birthDate || "",
+          startDate: updatedDocument.startDate || "",
+          endDate: updatedDocument.endDate || "",
+          partialIncapacity: updatedDocument.partialIncapacity || false,
+          incapacityReason: updatedDocument.incapacityReason || "",
+          prescribingDoctor: updatedDocument.prescribingDoctor || "",
+          issueDate: updatedDocument.issueDate || new Date().toISOString().split("T")[0],
+          additionalNotes: updatedDocument.additionalNotes || "",
+        };
+        break;
+  
+      case "rezept": // Rezept
+        newDoc = {
+          ...newDoc,
+          patientFirstName: updatedDocument.patientFirstName || "",
+          patientLastName: updatedDocument.patientLastName || "",
+          birthDate: updatedDocument.birthDate || "",
+          medications: updatedDocument.medications || [],
+          prescribingDoctor: updatedDocument.prescribingDoctor || "",
+          issueDate: updatedDocument.issueDate || new Date().toISOString().split("T")[0],
+          additionalNotes: updatedDocument.additionalNotes || "",
+        };
+        break;
+  
+      case "unt": // Untersuchungsprotokoll
+        newDoc = {
+          ...newDoc,
+          Titel: updatedDocument.Titel || "",
+          UntersuchungsDatum: updatedDocument.UntersuchungsDatum || "",
+          Untersucher: updatedDocument.Untersucher || "",
+          Befunde: updatedDocument.Befunde || "",
+          Diagnose: updatedDocument.Diagnose || "",
+          Empfehlungen: updatedDocument.Empfehlungen || "",
+          NachkontrollDatum: updatedDocument.NachkontrollDatum || "",
+          Bildgebung: updatedDocument.Bildgebung || "",
+          LaborErgebnisse: updatedDocument.LaborErgebnisse || "",
+          Vitalzeichen: updatedDocument.Vitalzeichen || {},
+          KörperlicheUntersuchung: updatedDocument.KörperlicheUntersuchung || {},
+          ZusätzlicheNotizen: updatedDocument.ZusätzlicheNotizen || "",
+        };
+        break;
+  
+      default:
+        console.error("Unbekannter Typ: ", updatedDocument.type);
+    }
+  
+    if (currentDocument) {
+      // Update bestehendes Dokument
+      setDocuments((prev) =>
+        prev.map((doc) => (doc.id === currentDocument.id ? newDoc : doc))
+      );
+    } else {
+      // Neues Dokument hinzufügen
       setDocuments((prev) => [...prev, newDoc]);
-      
     }
   
     // Modal schließen
     setModalOpen(false);
   };
 
+  const openEditModal = () => {
+    if (patientData) {
+      setFormData({
+        Name: patientData.full_name || "",
+        Krankenversicherung: patientData.insurance || "",
+        Privat: patientData.is_private || "Nein",
+        Geburtsdatum: patientData.birth_date || "",
+        Geschlecht: patientData.gender || "",
+        Adresse: patientData.address || "",
+        Telefonnummer: patientData.phoneNumber || "",
+        Email: patientData.email || "",
+        Notfallkontakt: patientData.emergency_contact || "",
+      });
+      setEditModal(true);
+    }
+  };
+
+  const validate = () => {
+    const errors = {};
+    if (!formData.Name) errors.Name = "Name ist erforderlich.";
+    if (!formData.Krankenversicherung) errors.Krankenversicherung = "Krankenversicherung ist erforderlich.";
+    if (!formData.Geburtsdatum) errors.Geburtsdatum = "Geburtsdatum ist erforderlich.";
+    if (!formData.Email) errors.Email = "Email ist erforderlich.";
+    return errors;
+  };
+  
+ 
   const filteredDocuments =
     selectedFilter === "all"
       ? documents
       : documents.filter((doc) => doc.type === selectedFilter);
-
+ 
   const groupedFilteredDocuments = filteredDocuments.reduce((acc, doc) => {
     acc[doc.createdAt] = acc[doc.createdAt] || [];
     acc[doc.createdAt].push(doc);
     return acc;
   }, {});
-
+ 
   console.log("DOCUMENTS ARRAY: ", documents);
 console.log("DELETE MODAL STATE: ", deleteModal);
-
+ 
   return (
     <div className={classes.container}>
-      <Link href={"/"}><h3>Zurück zum Terminkalendar</h3></Link>
+      <Link href={"/appointment"}><h3>Zurück zum Terminkalendar</h3></Link>
       <h1>Patientendetails</h1>
       <p>Patient ID: {id}</p>
       <div className={classes.patient}>
@@ -309,7 +559,7 @@ console.log("DELETE MODAL STATE: ", deleteModal);
               </ul>
             )}
           </div>
-
+ 
           <div>
             <div className={classes.filters}>
               <button
@@ -332,7 +582,7 @@ console.log("DELETE MODAL STATE: ", deleteModal);
                 </button>
               ))}
             </div>
-
+ 
             {Object.keys(groupedFilteredDocuments).map((createdAt) => (
               <div className={classes.query} key={createdAt}>
                   <h3>
@@ -349,7 +599,7 @@ console.log("DELETE MODAL STATE: ", deleteModal);
                       <span className={classes.docType}>{doc.type}</span>
                       <span className={classes.docTitle}>{doc.title}</span>
                       <span className={classes.docDate}>
-                          {doc.createdAt ? doc.createdAt.toLocaleDateString("de-DE", {
+                          {doc.createdAt ? new Date(doc.createdAt).toLocaleDateString("de-DE", {
                               weekday: "long",
                               year: "numeric",
                               month: "long",
@@ -370,14 +620,14 @@ console.log("DELETE MODAL STATE: ", deleteModal);
                       </button>
                   </div>
               ))}
-
+ 
               </div>
             ))}
           </div>
         </div>
-       <PatientCard patientData={patientData || null}/>
+       <PatientCard onDelete={handleDeletePatient} onEdit={openEditModal} patientData={patientData || null}/>
       </div>
-
+ 
       {modalOpen && (
   <div className={classes.fullscreenModal}>
     <div className={classes.modalContent}>
@@ -386,20 +636,20 @@ console.log("DELETE MODAL STATE: ", deleteModal);
       </button>
       {selectedForm?.component ? (
         <selectedForm.component
-        document={currentDocument}
-        onClose={handleModalClose}
-        onSave={handleSave}
-        mode={formMode}
-        documents={documents}
-        setSampleDocuments={setDocuments}
+          document={selectedDocument}
+          onClose={() => handleModalClose()}
+          onSave={handleSave}
+          mode={formMode}
+          documents={documents} // Weitergabe der aktuellen Dokumente
+          setSampleDocuments={setDocuments} // Die Funktion korrekt übergeben
         />
       ) : (
         <p>Kein Formular verfügbar</p>
       )}
-
-
+ 
+ 
     </div>
-
+ 
   </div>
 )}
     {deleteModal.open && (
@@ -421,6 +671,49 @@ console.log("DELETE MODAL STATE: ", deleteModal);
         </div>
       </div>
     )}
+    {editModal && (
+        <div className={classes.modalOverlay}>
+          <div className={classes.modalContent}>
+            <h2>Patienten bearbeiten</h2>
+            <form className={classes.zindex} onSubmit={handleUpdate}>
+              {Object.keys(formData).map((key) => (
+                <div key={key} className={classes.formGroup}>
+                  <label>{key}</label>
+                  {key === "Privat" ? (
+                    <select
+                      name={key}
+                      value={formData[key]}
+                      onChange={handleInputChange}
+                      className={classes.selectInput}
+                    >
+                      <option value="Ja">Ja</option>
+                      <option value="Nein">Nein</option>
+                    </select>
+                  ) : (
+                    <input
+                      type="text"
+                      name={key}
+                      value={formData[key]}
+                      onChange={handleInputChange}
+                      className={classes.textInput}
+                    />
+                  )}
+              
+                </div>
+              ))}
+              <div className={classes.modalActions}>
+                <button type="submit">Hinzufügen</button>
+                <button
+                  type="button"
+                  onClick={() => setEditModal(false)}
+                >
+                  Abbrechen
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

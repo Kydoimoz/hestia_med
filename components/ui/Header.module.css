@@ -4,9 +4,21 @@
   justify-content: space-between;
   align-items: center;
   height: 65px;
-  
-  margin-top: 10px;
+  background-color: #fff;
+  margin-top: 0px;
   padding-left: 6px;
+}
+
+.modalOverlay{
+  z-index: 100;
+}
+
+.zindex{
+  z-index: 100;
+}
+
+.modalContent{
+  z-index: 100;
 }
 
 .links{

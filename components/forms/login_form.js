@@ -158,7 +158,7 @@ export default function Login(){
         
             console.log("Benutzer eingeloggt und verifiziert:", verificationData);
             
-            router.replace("http://localhost:3000/patient/67856c6877c3b0e3cc18ddba");
+            router.replace("/appointment");
         }
 
         catch (err) {
@@ -193,6 +193,7 @@ export default function Login(){
                         color: 'black', 
                         },
                     }}
+                    href="/"
                     variant="outlined"
                     >
                     ← Go Back Home

@@ -90,3 +90,27 @@
     flex-direction: column;
   }
 }
+
+/* pages/styles/terms-privacy.css */
+.page-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.page-header {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.page-content {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.page-footer {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 30px;
+}

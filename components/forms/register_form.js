@@ -447,6 +447,7 @@ console.log("Formatted Birth Date:", formattedDate);
                         color: 'black', 
                         },
                     }}
+                    href="/"
                     variant="outlined"
                     >
                     ← Go Back Home

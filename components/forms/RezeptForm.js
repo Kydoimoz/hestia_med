@@ -1,15 +1,23 @@
 import { useState } from "react";
+import classes from "./RezeptForm.module.css"; 
+import { useRouter } from "next/router";
+import { useGlobalSession } from "../../context/SessionContext";
 
-export default function RezeptForm({ document, onSave, mode }) {
+export default function RezeptForm({ document, onSave }) {
+   const router = useRouter();
+    const {id} = router.query;
+    const session = useGlobalSession();
+    const user = session?.user;
   const [formData, setFormData] = useState({
-    type: "rezept",
-    title: document?.title || "Rezept",
-    patientFirstName: document?.patientFirstName || "",
-    patientLastName: document?.patientLastName || "",
-    birthDate: document?.birthDate || "",
-    medications: document?.medications || [
+    type: "rez",
+    title: document?.title || "Titel",
+    author: `${user.first_name} ${user.surname}` || "",
+    patientFirstName: document?.data?.patientFirstName || "",
+    patientLastName: document?.data?.patientLastName || "",
+    birthDate: document?.data?.birthDate || "",
+    medications: document?.data?.medications || [
       {
-        id: Date.now(), // Unique ID for each medication
+        id: Date.now(),
         medicationName: "",
         dosage: "",
         intakeFrequency: "",
@@ -17,27 +25,21 @@ export default function RezeptForm({ document, onSave, mode }) {
         specialInstructions: "",
       },
     ],
-    prescribingDoctor: document?.prescribingDoctor || "",
-    issueDate: document?.issueDate || new Date().toISOString().split("T")[0],
-    additionalNotes: document?.additionalNotes || "",
+    prescribingDoctor: document?.data?.prescribingDoctor || "",
+    issueDate: document?.data?.issueDate || new Date().toISOString().split("T")[0],
+    additionalNotes: document?.data?.additionalNotes || "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleMedicationChange = (index, field, value) => {
     const updatedMedications = formData.medications.map((med, i) =>
       i === index ? { ...med, [field]: value } : med
     );
-    setFormData({
-      ...formData,
-      medications: updatedMedications,
-    });
+    setFormData({ ...formData, medications: updatedMedications });
   };
 
   const addMedication = () => {
@@ -59,120 +61,184 @@ export default function RezeptForm({ document, onSave, mode }) {
 
   const removeMedication = (index) => {
     const updatedMedications = formData.medications.filter((_, i) => i !== index);
-    setFormData({
-      ...formData,
-      medications: updatedMedications,
-    });
+    setFormData({ ...formData, medications: updatedMedications });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSave(formData);
+    const documentData = {
+      patientId: id,
+      type: "rez",
+      title: formData.title || "Title",
+      author: formData.author,
+      data: {
+        patientFirstName: formData.patientFirstName,
+        patientLastName: formData.patientLastName,
+        birthDate: formData.birthDate,
+        medications: formData.medications,
+        prescribingDoctor: formData.prescribingDoctor,
+        issueDate: formData.issueDate,
+        additionalNotes: formData.additionalNotes,
+    }
+  }
+    try {
+      const response = await fetch("/api/medical_record", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(documentData)
+      });
+    
+      const data = await response.json();
+      console.log("Medical doc saved", data)
+
+      if (response.ok) {
+        console.log("Dokument gespeichert:", data);
+        if (onSave) onSave(data); // Notify parent component, if necessary
+      } else {
+        console.error("Fehler beim Speichern:", data.error);
+      }
+    } catch (error) {
+      console.error("Fehler bei der Anfrage:", error);
+    }
   };
+  
 
   return (
-    <form onSubmit={handleSubmit}>
-      {/* Titel */}
-      <input
-        name="title"
-        value={formData.title}
-        onChange={handleChange}
-        placeholder="Rezepttitel"
-      />
+    <div className={classes.formContainer}>
+      <h2 className={classes.titleHeading}>Rezept</h2>
+      <form onSubmit={handleSubmit}>
+        <div className={classes.formGroup}>
+          <label>Rezepttitel</label>
+          <input
+            className={classes.inputField}
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+          />
+        </div>
 
-      {/* Patientendaten */}
-      <input
-        name="patientFirstName"
-        value={formData.patientFirstName}
-        onChange={handleChange}
-        placeholder="Vorname des Patienten"
-      />
-      <input
-        name="patientLastName"
-        value={formData.patientLastName}
-        onChange={handleChange}
-        placeholder="Nachname des Patienten"
-      />
-      <input
-        type="date"
-        name="birthDate"
-        value={formData.birthDate}
-        onChange={handleChange}
-        placeholder="Geburtsdatum"
-      />
+        <div className={classes.formGroup}>
+          <label>Vorname des Patienten</label>
+          <input
+            className={classes.inputField}
+            name="patientFirstName"
+            value={formData.patientFirstName}
+            onChange={handleChange}
+          />
+        </div>
 
-      {/* Medikamentendetails */}
-      <h3>Medikamente</h3>
-      {formData.medications.map((medication, index) => (
-        <div key={medication.id} style={{ border: "1px solid #ccc", padding: "10px", marginBottom: "10px" }}>
+        <div className={classes.formGroup}>
+          <label>Nachname des Patienten</label>
           <input
-            name="medicationName"
-            value={medication.medicationName}
-            onChange={(e) => handleMedicationChange(index, "medicationName", e.target.value)}
-            placeholder="Medikamentenname"
+            className={classes.inputField}
+            name="patientLastName"
+            value={formData.patientLastName}
+            onChange={handleChange}
           />
+        </div>
+
+        <div className={classes.formGroup}>
+          <label>Geburtsdatum</label>
           <input
-            name="dosage"
-            value={medication.dosage}
-            onChange={(e) => handleMedicationChange(index, "dosage", e.target.value)}
-            placeholder="Dosierung (z.B. 500mg)"
+            className={classes.inputField}
+            type="date"
+            name="birthDate"
+            value={formData.birthDate}
+            onChange={handleChange}
           />
-          <input
-            name="intakeFrequency"
-            value={medication.intakeFrequency}
-            onChange={(e) => handleMedicationChange(index, "intakeFrequency", e.target.value)}
-            placeholder="Einnahmehäufigkeit (z.B. 3x täglich)"
-          />
-          <input
-            name="duration"
-            value={medication.duration}
-            onChange={(e) => handleMedicationChange(index, "duration", e.target.value)}
-            placeholder="Dauer der Einnahme (z.B. 7 Tage)"
-          />
-          <textarea
-            name="specialInstructions"
-            value={medication.specialInstructions}
-            onChange={(e) => handleMedicationChange(index, "specialInstructions", e.target.value)}
-            placeholder="Besondere Hinweise (z.B. nach dem Essen einnehmen)"
-          />
-          <button
-            type="button"
-            onClick={() => removeMedication(index)}
-            style={{ color: "red", marginTop: "5px" }}
-          >
-            Medikament entfernen
+        </div>
+
+        <div className={classes.formGroup}>
+          <label>Medikamente</label>
+          {formData.medications.map((med, index) => (
+            <div key={med.id} className={classes.medicationItem}>
+              <h3 className={classes.medicationTitle}>
+                Medikament {index + 1} {/* Dynamische Überschrift */}
+              </h3>
+              <input
+                className={classes.inputField}
+                placeholder="Medikamentenname"
+                value={med.medicationName}
+                onChange={(e) => handleMedicationChange(index, "medicationName", e.target.value)}
+              />
+              <input
+                className={classes.inputField}
+                placeholder="Dosierung (z.B. 500mg)"
+                value={med.dosage}
+                onChange={(e) => handleMedicationChange(index, "dosage", e.target.value)}
+              />
+              <input
+                className={classes.inputField}
+                placeholder="Einnahmehäufigkeit"
+                value={med.intakeFrequency}
+                onChange={(e) => handleMedicationChange(index, "intakeFrequency", e.target.value)}
+              />
+              <input
+                className={classes.inputField}
+                placeholder="Dauer der Einnahme"
+                value={med.duration}
+                onChange={(e) => handleMedicationChange(index, "duration", e.target.value)}
+              />
+              <textarea
+                className={classes.textareaField}
+                placeholder="Besondere Hinweise"
+                value={med.specialInstructions}
+                onChange={(e) =>
+                  handleMedicationChange(index, "specialInstructions", e.target.value)
+                }
+              />
+              <button
+                type="button"
+                className={classes.removeButton}
+                onClick={() => removeMedication(index)}
+              >
+                Entfernen
+              </button>
+            </div>
+          ))}
+          <button type="button" className={classes.addButton} onClick={addMedication}>
+            Medikament hinzufügen
           </button>
         </div>
-      ))}
 
-      <button type="button" onClick={addMedication} style={{ marginTop: "10px" }}>
-        Medikament hinzufügen
-      </button>
+        <div className={classes.formGroup}>
+          <label>Verschreibender Arzt</label>
+          <input
+            className={classes.inputField}
+            name="prescribingDoctor"
+            value={formData.prescribingDoctor}
+            onChange={handleChange}
+          />
+        </div>
 
-      {/* Arztinformationen */}
-      <input
-        name="prescribingDoctor"
-        value={formData.prescribingDoctor}
-        onChange={handleChange}
-        placeholder="Verschreibender Arzt"
-      />
-      <input
-        type="date"
-        name="issueDate"
-        value={formData.issueDate}
-        onChange={handleChange}
-      />
+        <div className={classes.formGroup}>
+          <label>Ausstellungsdatum</label>
+          <input
+            className={classes.inputField}
+            type="date"
+            name="issueDate"
+            value={formData.issueDate}
+            onChange={handleChange}
+          />
+        </div>
 
-      {/* Zusätzliche Notizen */}
-      <textarea
-        name="additionalNotes"
-        value={formData.additionalNotes}
-        onChange={handleChange}
-        placeholder="Zusätzliche Notizen"
-      />
+        <div className={classes.formGroup}>
+          <label>Zusätzliche Notizen</label>
+          <textarea
+            className={classes.textareaField}
+            name="additionalNotes"
+            value={formData.additionalNotes}
+            onChange={handleChange}
+          />
+        </div>
 
-      {/* Speichern-Button */}
-      <button type="submit">Rezept speichern</button>
-    </form>
+        {mode !== "view" && (
+        <button type="submit" className={classes.submitButton}>
+          Rezept speichern
+        </button>)}
+      </form>
+    </div>
   );
 }
