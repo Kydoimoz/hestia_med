@@ -1,30 +1,3 @@
-.app {
-    display: flex;
-    height: 100vh; 
-    width: 100%;
-}
-
-.container {
-    display: flex;
-    flex: 1; 
-    flex-direction: row;
-}
-
-.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    /* background-color: #fff; */
-    z-index: 1;
-    /* display: flex; */
-    /* align-items: center; */
-    padding: 0 15px;
-}
-
-.content {
-    margin-top: 60px;
-    padding: 20px;
-    flex: 1;
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:e4a3a17450fd6215da4782a429a9778cad95b05aee96e5c1d2537c9394f2aebd
+size 455

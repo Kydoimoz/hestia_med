@@ -1,13 +1,13 @@
 # PSD-Dateien mit Git LFS verwalten
 *.psd filter=lfs diff=lfs merge=lfs -text
-
 # Alle .node-Dateien mit Git LFS verwalten
 *.node filter=lfs diff=lfs merge=lfs -text
-
 # Spezifische Dateien im node_modules-Verzeichnis mit Git LFS verwalten
 node_modules/@next/swc-win32-x64-msvc/next-swc.win32-x64-msvc.node filter=lfs diff=lfs merge=lfs -text
 node_modules/** filter=lfs diff=lfs merge=lfs -text
-
 # Andere große Dateien wie .mp4 oder .zip (optional)
 *.mp4 filter=lfs diff=lfs merge=lfs -text
 *.zip filter=lfs diff=lfs merge=lfs -text
+*.js filter=lfs diff=lfs merge=lfs -text
+*.css filter=lfs diff=lfs merge=lfs -text
+*.ts filter=lfs diff=lfs merge=lfs -text
