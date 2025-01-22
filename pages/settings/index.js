@@ -1,10 +1,5 @@
 import Head from "next/head";
-import Image from "next/image";
-import localFont from "next/font/local";
-import Patient from "@/components/pages/patient";
-import Appointments from "@/components/pages/appointments";
-import Statistics from "@/components/pages/statistics";
-import Settings from "@/components/pages/settings";
+import Settings from "./../../components/pages/settings";
 export default function Einstellungen() {
   return (
     <>

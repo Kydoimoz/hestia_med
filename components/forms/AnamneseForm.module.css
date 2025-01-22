@@ -1,139 +1,182 @@
-/* Form Container */
+/* Container des Formulars */
 .formContainer {
-    background-color: #f8f9fa;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 800px;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-    margin: auto;
+  background-color: #f9f9f9;
+  padding: 50px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 850px;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+  margin: auto;
+  transition: all 0.3s ease;
+}
+
+.formContainer:hover {
+  box-shadow: 0 12px 50px rgba(0, 0, 0, 0.2);
+}
+
+/* Überschrift */
+.titleHeading {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #AE9B7F;
+  text-transform: capitalize;
+  letter-spacing: 2px;
+}
+
+/* Eingabefelder */
+.inputField,
+.selectField,
+.textareaField {
+  width: 100%;
+  padding: 16px;
+  border: 2px solid #C4B79B;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease-in-out;
+  background-color: #ffffff;
+  color: #333;
+}
+
+.inputField:focus,
+.selectField:focus,
+.textareaField:focus {
+  outline: none;
+  border-color: #AE9B7F;
+  box-shadow: 0 0 10px rgba(174, 155, 127, 0.5);
+}
+
+/* Textarea-Spezifisch */
+.textareaField {
+  resize: vertical;
+  min-height: 140px;
+  font-family: inherit;
+  padding-top: 12px;
+}
+
+/* Abstand der Formularelemente erhöhen */
+.formGroup {
+  margin-bottom: 30px;
+}
+
+/* Checkboxen nebeneinander anordnen und schöner machen */
+.checkboxGroup {
+  display: flex;
+  justify-content: space-between; /* Checkboxen nebeneinander mit Abstand */
+  gap: 25px;  /* Abstand zwischen den Checkboxen */
+  margin-bottom: 20px;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: #555;
+  transition: color 0.3s ease;
+}
+
+.checkboxLabel:hover {
+  color: #AE9B7F;
+}
+
+.checkboxLabel input {
+  appearance: none; /* Entfernt die Standard-Checkbox-Stile */
+  width: 20px;
+  height: 20px;
+  border: 2px solid #C4B79B;
+  border-radius: 4px;
+  margin-right: 10px;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+.checkboxLabel input:checked {
+  background-color: #AE9B7F;
+  border-color: #AE9B7F;
+  box-shadow: 0 0 5px rgba(174, 155, 127, 0.5);
+}
+
+.checkboxLabel input:checked::after {
+  content: '✔';
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  color: white;
+  font-size: 14px;
+}
+
+/* Submit-Button */
+.submitButton {
+  background-color: #AE9B7F;
+  color: #ffffff;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  box-shadow: 0 8px 20px rgba(174, 155, 127, 0.3);
+}
+
+.submitButton:hover {
+  background-color: #8C7B5A;
+  box-shadow: 0 12px 30px rgba(142, 125, 102, 0.4);
+}
+
+.submitButton:active {
+  background-color: #F1E1C6;
+  box-shadow: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .formContainer {
+    padding: 35px;
   }
-  
-  /* Title Heading */
+
   .titleHeading {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #2c3e50;
-    text-transform: capitalize;
-    letter-spacing: 1px;
+    font-size: 2.2rem;
   }
-  
-  /* Form Groups */
-  .formGroup {
-    margin-bottom: 25px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+}
+
+@media (max-width: 480px) {
+  .formContainer {
+    padding: 25px;
   }
 
-  .formGroup label{
-    font-weight: bold;
+  .titleHeading {
+    font-size: 1.8rem;
   }
 
-  .formgroup input{
-    width: 400px !important;
-  }
-  
-  .labelText {
-    display: block;
-    font-weight: 900;
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    color: #34495e;
-  }
-  
   .inputField,
   .selectField,
   .textareaField {
-    width: 100%;
-    padding: 15px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
     font-size: 1rem;
-    transition: all 0.3s ease-in-out;
-    background-color: #ffffff;
-    min-width: 500px;
   }
-  
-  .inputField:focus,
-  .selectField:focus,
-  .textareaField:focus {
-    outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 8px rgba(52, 152, 219, 0.5);
-  }
-  
-  .textareaField {
-    resize: vertical;
-    min-height: 120px;
-    font-family: inherit;
-  }
-  
-  /* Checkbox Group */
+
   .checkboxGroup {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    flex-direction: column; /* Stellt Checkboxen untereinander, wenn der Bildschirm kleiner ist */
+    gap: 15px;
   }
-  
-  .checkboxLabel {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 500;
-    font-size: 1rem;
-    cursor: pointer;
-    color: #2c3e50;
-  }
-  
-  /* Submit Button */
-  .submitButton {
-    background-color: #1abc9c;
-    color: #ffffff;
-    padding: 15px;
-    border: none;
-    border-radius: 10px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    width: 100%;
-    box-shadow: 0 8px 20px rgba(26, 188, 156, 0.3);
-  }
-  
-  .submitButton:hover {
-    background-color: #16a085;
-    box-shadow: 0 10px 25px rgba(22, 160, 133, 0.4);
-  }
-  
-  .submitButton:active {
-    background-color: #138d75;
-    box-shadow: none;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .formContainer {
-      padding: 30px;
-    }
-  
-    .titleHeading {
-      font-size: 2rem;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .formContainer {
-      padding: 20px;
-    }
-  
-    .titleHeading {
-      font-size: 1.8rem;
-    }
-  }
-  
+}
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.input{
+  min-width: 90%;
+  height: 40px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}

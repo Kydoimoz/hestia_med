@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import { useGlobalSession } from "../../context/SessionContext";
 
 const links = [
-  { icon: Calendar, label: "Terminkalendar", path: "/" },
+  { icon: Calendar, label: "Terminkalendar", path: "/appointment" },
   { icon: Patients, label: "Patientenverwaltung", path: "/patients" },
   { icon: Stats, label: "Statistiken", path: "/statistics" },
   { icon: Finance, label: "Finanzmanagement", path: "/finance" },

@@ -79,7 +79,7 @@ export default function Header() {
   const handleSignOut = async () => {
       try{
           await signOut();
-          router.push("/");
+          router.push("/appointment");
       }
       catch(err){
           console.error("Error,", err);
@@ -311,7 +311,7 @@ export default function Header() {
         <div className={classes.modalOverlay}>
           <div className={classes.modalContent}>
             <h2>Neuen Patienten hinzufügen</h2>
-            <form onSubmit={handleSubmit}>
+            <form className={classes.zindex} onSubmit={handleSubmit}>
               {Object.keys(formData).map((key) => (
                 <div key={key} className={classes.formGroup}>
                   <label>{key}</label>

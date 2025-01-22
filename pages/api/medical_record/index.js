@@ -22,6 +22,7 @@ export default async function handler(req, res) {
             if (!savedDocument) {
                 return res.status(500).json({ message: "Dokument konnte nicht gespeichert werden." });
             }
+            
             const updatedPatient = await Patient.findByIdAndUpdate(
                 documentData.patientId,
                 { $push: { documents: savedDocument._id } }, 

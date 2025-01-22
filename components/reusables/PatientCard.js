@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import classes from "./PatientCard.module.css";
 import CaretDown from "./../../public/icons/Caret_Down_MD.svg";
+import Button from '@mui/material/Button';
 const patient = {
   id: "13fß%!KJKLHhdfskfkad",
   allgemein: [
@@ -16,7 +17,7 @@ const patient = {
   ],
 };
 
-export default function PatientCard({ patientData }) {  // patientData direkt als Prop
+export default function PatientCard({ patientData, onDelete, onEdit }) {  // patientData direkt als Prop
   const [isOpen, setIsOpen] = useState(true);
   console.log(patientData);
   const patient = patientData || {};
@@ -39,6 +40,9 @@ export default function PatientCard({ patientData }) {  // patientData direkt al
       </div>
       {isOpen && (
         <div className={classes.cardContent}>
+         <Button onClick={onDelete}>Patient löschen</Button> 
+         <Button onClick={onEdit}>Patient bearbeiten</Button> 
+         
           <div className={classes.cardRow}>
             <strong>Name:</strong> <span>{patient.full_name || "Keine Angabe"}</span>
           </div>

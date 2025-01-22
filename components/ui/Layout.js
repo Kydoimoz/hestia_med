@@ -7,19 +7,21 @@ import { SessionProviderWrapper } from "../../context/SessionContext";
 
 export default function Layout({ children }) {
     const router = useRouter();
-    const excludedPaths = ["/register", "/login"];
+    const excludedPaths = ["/register", "/login", "/terms", "/privacy"];
+    const isHomepage = router.pathname === "/";  // Überprüft, ob der Benutzer auf der Homepage ist.
     const isExcludedPath = excludedPaths.some(path => router.pathname.startsWith(path));
 
-    if (isExcludedPath) {
-        return <>{children}</>; 
+    if (isHomepage || isExcludedPath) {
+        return <>{children}</>;  // Kein Layout für die Homepage oder Ausschluss-Pfade.
     }
 
     return (
         <SessionProviderWrapper>
             <div className={classes.app}>
-                {/*<div className={classes.sidebar}>
+                {/* Optional Sidebar, falls du sie später verwenden möchtest */}
+                {/* <div className={classes.sidebar}>
                     <Sidebar />
-                </div>*/}
+                </div> */}
                 <div className={classes.header}>
                     <Header />
                 </div>

@@ -1,128 +1,149 @@
 import React, { useState } from "react";
+import classes from "./UntersuchungsprotokollForm.module.css";
 
-export default function UntersuchungsprotokollForm({ sampleDocuments, setSampleDocuments }) {
-  const [formData, setFormData] = useState({
+export default function UntersuchungsprotokollForm({ sampleDocuments, setSampleDocuments, mode }) {
+  const [formularDaten, setFormularDaten] = useState({
     type: "unt",
-    title: "",
-    patientName: "",
-    patientID: "",
-    examinationDate: "",
-    examiner: "",
-    findings: "",
-    diagnosis: "",
-    recommendations: "",
-    followUpDate: "",
-    imaging: "",
-    labResults: "",
-    vitalSigns: {
-      heartRate: "",
-      bloodPressure: "",
-      respiratoryRate: "",
-      temperature: "",
-      oxygenSaturation: "",
+    Titel: "",
+    UntersuchungsDatum: "",
+    Untersucher: "",
+    Befunde: "",
+    Diagnose: "",
+    Empfehlungen: "",
+    NachkontrollDatum: "",
+    Bildgebung: "",
+    LaborErgebnisse: "",
+    Vitalzeichen: {
+      Herzfrequenz: "",
+      Blutdruck: "",
+      Atemfrequenz: "",
+      Temperatur: "",
+      Sauerstoffsättigung: "",
     },
-    physicalExamination: {
-      generalAppearance: "",
-      headAndNeck: "",
-      chest: "",
-      abdomen: "",
-      extremities: "",
-      neurological: "",
+    KörperlicheUntersuchung: {
+      Allgemeinzustand: "",
+      KopfUndHals: "",
+      Brustkorb: "",
+      Bauch: "",
+      Extremitäten: "",
+      Neurologisch: "",
     },
-    additionalNotes: "",
+    ZusätzlicheNotizen: "",
   });
 
-  const [searchTerm, setSearchTerm] = useState("");
+  const [suchBegriff, setSuchBegriff] = useState("");
 
-  const handleChange = (e) => {
+  const handleAenderung = (e) => {
     const { name, value, type, checked } = e.target;
 
-    // Handle nested fields
     if (name.includes(".")) {
-      const [section, field] = name.split(".");
-      setFormData((prev) => ({
-        ...prev,
-        [section]: {
-          ...prev[section],
-          [field]: value,
+      const [abschnitt, feld] = name.split(".");
+      setFormularDaten((vorher) => ({
+        ...vorher,
+        [abschnitt]: {
+          ...vorher[abschnitt],
+          [feld]: value,
         },
       }));
     } else {
-      setFormData((prev) => ({
-        ...prev,
+      setFormularDaten((vorher) => ({
+        ...vorher,
         [name]: type === "checkbox" ? checked : value,
       }));
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSpeichern = (e) => {
     e.preventDefault();
-    setSampleDocuments((prev) => [...(prev || []), formData]);
-    setFormData({
-      type: "unt",
-      title: "",
-      patientName: "",
-      patientID: "",
-      examinationDate: "",
-      examiner: "",
-      findings: "",
-      diagnosis: "",
-      recommendations: "",
-      followUpDate: "",
-      imaging: "",
-      labResults: "",
-      vitalSigns: {
-        heartRate: "",
-        bloodPressure: "",
-        respiratoryRate: "",
-        temperature: "",
-        oxygenSaturation: "",
+
+    setSampleDocuments((vorher) => [...(vorher || []), formularDaten]);
+
+    setFormularDaten({
+      Titel: "",
+      UntersuchungsDatum: "",
+      Untersucher: "",
+      Befunde: "",
+      Diagnose: "",
+      Empfehlungen: "",
+      NachkontrollDatum: "",
+      Bildgebung: "",
+      LaborErgebnisse: "",
+      Vitalzeichen: {
+        Herzfrequenz: "",
+        Blutdruck: "",
+        Atemfrequenz: "",
+        Temperatur: "",
+        Sauerstoffsättigung: "",
       },
-      physicalExamination: {
-        generalAppearance: "",
-        headAndNeck: "",
-        chest: "",
-        abdomen: "",
-        extremities: "",
-        neurological: "",
+      KörperlicheUntersuchung: {
+        Allgemeinzustand: "",
+        KopfUndHals: "",
+        Brustkorb: "",
+        Bauch: "",
+        Extremitäten: "",
+        Neurologisch: "",
       },
-      additionalNotes: "",
+      ZusätzlicheNotizen: "",
     });
   };
 
-  const filteredFields = Object.entries(formData)
-    .filter(([key, value]) => key.includes(searchTerm) || JSON.stringify(value).includes(searchTerm))
-    .map(([key, value]) => (
-      <div key={key}>
-        <label>{key}</label>
-        {typeof value === "object" ? (
-          Object.entries(value).map(([nestedKey, nestedValue]) => (
+  const gefilterteFelder = Object.entries(formularDaten)
+    .filter(([schluessel, wert]) => schluessel.includes(suchBegriff) || JSON.stringify(wert).includes(suchBegriff))
+    .map(([schluessel, wert]) => (
+      <div key={schluessel} className={classes.formGroup}>
+        <label>{schluessel.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase())}</label> 
+        {typeof wert === "object" ? (
+          Object.entries(wert).map(([unterSchluessel, unterWert]) => (
             <input
-              key={nestedKey}
-              name={`${key}.${nestedKey}`}
-              value={nestedValue}
-              onChange={handleChange}
-              placeholder={nestedKey}
+              key={unterSchluessel}
+              name={`${schluessel}.${unterSchluessel}`}
+              value={unterWert}
+              onChange={handleAenderung}
+              placeholder={unterSchluessel.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase())}
+              className={classes.inputFeld}
             />
           ))
+        ) : schluessel === "UntersuchungsDatum" || schluessel === "NachkontrollDatum" ? (
+          <input
+            type="date"
+            name={schluessel}
+            value={wert}
+            onChange={handleAenderung}
+            className={classes.inputFeld}
+          />
         ) : (
-          <input name={key} value={value} onChange={handleChange} placeholder={key} />
+          <input
+            name={schluessel}
+            value={wert}
+            onChange={handleAenderung}
+            placeholder={schluessel.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase())}
+            className={classes.inputFeld}
+          />
         )}
       </div>
     ));
 
   return (
-    <div>
-      <h2>Untersuchungsprotokoll erstellen</h2>
+    <div className={classes.formularContainer}>
+      <h2 className={classes.titelUeberschrift}>Untersuchungsprotokoll erstellen</h2>
       <input
         type="text"
         placeholder="Feldsuche"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        value={suchBegriff}
+        onChange={(e) => setSuchBegriff(e.target.value)}
+        className={classes.inputFeld}
       />
-      <form onSubmit={handleSubmit}>
-        {filteredFields.length > 0 ? filteredFields : <p>Keine passenden Felder gefunden.</p>}
-        <button type="submit">Speichern</button>
+      <form onSubmit={handleSpeichern}>
+        {gefilterteFelder.length > 0 ? (
+          gefilterteFelder
+        ) : (
+          <p className={classes.keineFelderNachricht}>Keine passenden Felder gefunden.</p>
+        )}
+
+{mode !== "view" && (
+        <button type="submit" className={classes.submitButton}>
+          Speichern
+        </button>)}
       </form>
     </div>
   );

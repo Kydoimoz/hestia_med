@@ -1,5 +1,8 @@
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import 'react-big-calendar/lib/addons/dragAndDrop/styles';
+
 
 
 html,
@@ -19,7 +22,10 @@ body {
     Droid Sans,
     Helvetica Neue,
     sans-serif;
+    scroll-behavior: smooth;
 }
+
+
 
 a {
   color: inherit;
@@ -34,4 +40,5 @@ img {
   max-width: 100%;
   height: auto;
 }
+
 
