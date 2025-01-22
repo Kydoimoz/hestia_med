@@ -1,1 +1,56 @@
-"use strict";(()=>{var e={};e.id=4651,e.ids=[4651],e.modules={74729:e=>{e.exports=require("bcryptjs")},56037:e=>{e.exports=require("mongoose")},65542:e=>{e.exports=require("next-auth")},16382:e=>{e.exports=require("next-auth/providers/credentials")},75600:e=>{e.exports=require("next/dist/compiled/next-server/pages-api.runtime.prod.js")},82015:e=>{e.exports=require("react")},5378:e=>{e.exports=import("react-cookie")},96762:(e,r)=>{Object.defineProperty(r,"M",{enumerable:!0,get:function(){return function e(r,t){return t in r?r[t]:"then"in r&&"function"==typeof r.then?r.then(r=>e(r,t)):"function"==typeof r&&"default"===t?r:void 0}}})},16081:(e,r,t)=>{t.a(e,async(e,i)=>{try{t.r(r),t.d(r,{config:()=>c,default:()=>u,routeModule:()=>l});var a=t(89947),s=t(2706),n=t(96762),o=t(30914),d=e([o]);o=(d.then?(await d)():d)[0];let u=(0,n.M)(o,"default"),c=(0,n.M)(o,"config"),l=new a.PagesAPIRouteModule({definition:{kind:s.A.PAGES_API,page:"/api/auth/[...nextauth]",pathname:"/api/auth/[...nextauth]",bundlePath:"",filename:""},userland:o});i()}catch(e){i(e)}})},93307:(e,r,t)=>{t.d(r,{A:()=>s});var i=t(56037),a=t.n(i);let s=async()=>{try{await a().connect(process.env.MONGODB_URI,{useNewUrlParser:!0,useUnifiedTopology:!0}),console.log("Erfolgreich mit der MongoDB-Datenbank verbunden.")}catch(e){throw console.error(`Fehler beim Verbinden mit der MongoDB-Datenbank: ${e.message}`),console.error("Stack-Trace: ",e.stack),Error("Verbindung zur MongoDB fehlgeschlagen.")}}},42284:(e,r,t)=>{Object.defineProperty(r,"__esModule",{value:!0});let i=t(96797)._(t(56037)),a=new i.default.Schema({practice:{type:i.default.Schema.Types.ObjectId,ref:"Practice",required:!0},title:{type:String,required:!1},first_name:{type:String,required:!0},surname:{type:String,required:!0},birth_date:{type:Date,required:!0},gender:{type:String,required:!0},email:{type:String,required:!0,unique:!0,match:[/.+\@.+\..+/,"Please provide a valid email address."]},phoneNumber:{type:String,required:!0},country:{type:String,required:!0},city:{type:String,required:!0},address:{type:String,required:!0},password:{type:String,required:!0},role:{type:String,required:!0,enum:["practitioner","nurse","administration"]},verificationCode:String,verificationToken:String,expirationTime:Date,isVerified:{type:Boolean,default:!1},termsAccepted:{type:Boolean,required:!0,default:!1}},{timestamps:!0}),s=i.default.models.User||i.default.model("User",a);e.exports=s},30914:(e,r,t)=>{t.a(e,async(e,i)=>{try{let g;t.r(r),t.d(r,{GET:()=>w,POST:()=>P,authOptions:()=>_,default:()=>A,user_account:()=>g});var a=t(93307),s=t(42284),n=t.n(s),o=t(65542),d=t.n(o),u=t(81095),c=t(16382),l=t.n(c),p=t(74729),m=t.n(p),f=t(11091),y=t(5378),h=e([y]);y=(h.then?(await h)():h)[0];let _={providers:[l()({id:"credentials",name:"credentials",credentials:{},async authorize(e){try{await (0,a.A)();let r=await n().findOne({email:e?.email});if(console.log("User: ",r),!r)return null;let t=await m().compare(e.password,r.password);if(e.email===r.email&&t)return g={user_ID:r._id,practice:r.practice,title:r.title,first_name:r.first_name,surname:r.surname,gender:r.gender,birth_date:r.birth_date,email:r.email,phoneNumber:r.phoneNumber,country:r.country,city:r.city,address:r.address,password:r.password,isVerified:r.isVerified,role:r.role,termsAccepted:r.termsAccepted},console.log(g),Promise.resolve(g);return null}catch(e){return console.error(e),null}}})],jwt:{encryption:!0,maxAge:2592e3},session:{jwt:!0,strategy:"jwt",maxAge:2592e3},callbacks:{jwt:async({token:e,user:r})=>(r&&(e.user_ID=r._id,e.practice=r.practice,e.title=r.title,e.first_name=r.first_name,e.surname=r.surname,e.gender=r.gender,e.birth_date=r.birth_date,e.email=r.email,e.phoneNumber=r.phoneNumber,e.country=r.country,e.city=r.city,e.address=r.address,e.password=r.password,e.isVerified=r.isVerified,e.role=r.role,e.termsAccepted=r.termsAccepted),e),session:async({session:e,token:r})=>(e.user.user_ID=r.user_ID,e.user.practice=r.practice,e.user.title=r.title,e.user.first_name=r.first_name,e.user.surname=r.surname,e.user.gender=r.gender,e.user.birth_date=r.birth_date,e.user.email=r.email,e.user.phoneNumber=r.phoneNumber,e.user.country=r.country,e.user.city=r.city,e.user.address=r.address,e.user.password=r.password,e.user.isVerified=r.isVerified,e.user.role=r.role,e.user.termsAccepted=r.termsAccepted,e),async session(e,r){let t=await n().findById(r.user.user_ID).populate("practice");e.user={...t._doc,practice:t.practice};let i=await (0,u.fetchUpdatedUserData)(r.user.user_ID);return e.user={user_ID:i._id,practice:i.practice,title:i.title,first_name:i.first_name,surname:i.surname,gender:i.gender,birth_date:i.birth_date,email:i.email,phoneNumber:i.phoneNumber,country:i.country,city:i.city,address:i.address,password:i.password,isVerified:i.isVerified,role:i.role,termsAccepted:i.termsAccepted},e}},callbacks:{async signIn(e,r,t){let{email:i}=e,a=await (0,f.default)(i);return Promise.resolve({...e,...a})},session:async e=>(e&&(e.user={id:g.user_ID,practice:g.practice,title:g.title,first_name:g.first_name,surname:g.surname,gender:g.gender,birth_date:g.birth_date,email:g.email,phoneNumber:g.phoneNumber,country:g.country,city:g.city,address:g.address,password:g.password,isVerified:g.isVerified,role:g.role,termsAccepted:g.termsAccepted}),e)},secret:process.env.NEXTAUTH_SECRET,pages:{signIn:"/login/",callbackUrl:"/home/"}},b=d()(_),A=b,w=(e,r)=>b.handleRequest(e,r,{..._}),P=(e,r)=>b.handleRequest(e,r,{..._});i()}catch(e){i(e)}})},11091:(e,r,t)=>{t.r(r),t.d(r,{default:()=>s}),t(82015);var i=t(42284),a=t.n(i);let s=async e=>{try{let r=await a().findOne({email:e});if(r){let{first_name:e,surname:t}=r;return console.log("User Info from queryData:",{first_name:e,surname:t}),Promise.resolve({first_name:e,surname:t})}return Promise.resolve({})}catch(e){return console.error("Error in queryData:",e),Promise.resolve({})}}},81095:(e,r,t)=>{t.r(r),t.d(r,{fetchUpdatedUserData:()=>n});var i=t(93307),a=t(42284),s=t.n(a);async function n(e){try{await (0,i.A)();let r=await s().findById(e).populate("practice");if(!r)throw Error("Benutzer nicht gefunden");return r}catch(e){throw console.error("Fehler beim Abrufen der Benutzerdaten:",e),Error("Fehler beim Abrufen der Benutzerdaten")}}},2706:(e,r)=>{Object.defineProperty(r,"A",{enumerable:!0,get:function(){return t}});var t=function(e){return e.PAGES="PAGES",e.PAGES_API="PAGES_API",e.APP_PAGE="APP_PAGE",e.APP_ROUTE="APP_ROUTE",e.IMAGE="IMAGE",e}({})},89947:(e,r,t)=>{e.exports=t(75600)},96797:(e,r)=>{r._=function(e){return e&&e.__esModule?e:{default:e}}}};var r=require("../../../webpack-api-runtime.js");r.C(e);var t=r(r.s=16081);module.exports=t})();
+"use strict";
+(() => {
+var exports = {};
+exports.id = 3748;
+exports.ids = [3748];
+exports.modules = {
+
+/***/ 6689:
+/***/ ((module) => {
+
+module.exports = require("react");
+
+/***/ }),
+
+/***/ 7966:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+Object(function webpackMissingModule() { var e = new Error("Cannot find module 'mongoose'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+
+/**
+ * 
+ * @async
+ * @returns {Promise<void>}
+ * @throws {Error} 
+ */ const connectDB = async ()=>{
+    try {
+        await Object(function webpackMissingModule() { var e = new Error("Cannot find module 'mongoose'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(process.env.MONGODB_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+        console.log("Erfolgreich mit der MongoDB-Datenbank verbunden.");
+    } catch (err) {
+        console.error(`Fehler beim Verbinden mit der MongoDB-Datenbank: ${err.message}`);
+        console.error("Stack-Trace: ", err.stack);
+        throw new Error("Verbindung zur MongoDB fehlgeschlagen.");
+    }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (connectDB);
+
+
+/***/ })
+
+};
+;
+
+// load runtime
+var __webpack_require__ = require("../../../webpack-api-runtime.js");
+__webpack_require__.C(exports);
+var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
+var __webpack_exports__ = __webpack_require__.X(0, [6309,5222], () => (__webpack_exec__(5222)));
+module.exports = __webpack_exports__;
+
+})();

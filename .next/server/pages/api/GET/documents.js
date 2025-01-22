@@ -1,1 +1,116 @@
-"use strict";(()=>{var e={};e.id=666,e.ids=[666],e.modules={56037:e=>{e.exports=require("mongoose")},75600:e=>{e.exports=require("next/dist/compiled/next-server/pages-api.runtime.prod.js")},96762:(e,t)=>{Object.defineProperty(t,"M",{enumerable:!0,get:function(){return function e(t,r){return r in t?t[r]:"then"in t&&"function"==typeof t.then?t.then(t=>e(t,r)):"function"==typeof t&&"default"===r?t:void 0}}})},70697:(e,t,r)=>{r.r(t),r.d(t,{config:()=>f,default:()=>m,routeModule:()=>g});var i={};r.r(i),r.d(i,{default:()=>p});var n=r(89947),a=r(2706),d=r(96762),o=r(93307);r(42284);var u=r(64102),s=r.n(u),l=r(99761),c=r.n(l);async function p(e,t){if("GET"===e.method)try{await (0,o.A)();let{patient_id:r}=e.query;if(console.log(r),!r)return t.status(400).json({message:"Patient ID is required"});let i=await s().findById(r);if(console.log("PATIENT ",i),!i)return t.status(404).json({message:"Patient not found"});let n=await c().find({_id:{$in:i.documents}});console.log("Documents ",n),t.status(200).json(n)}catch(e){console.error(e.message),t.status(500).json({message:"Error fetching documents"})}else t.status(405).json({message:"Method Not Allowed"})}let m=(0,d.M)(i,"default"),f=(0,d.M)(i,"config"),g=new n.PagesAPIRouteModule({definition:{kind:a.A.PAGES_API,page:"/api/GET/documents",pathname:"/api/GET/documents",bundlePath:"",filename:""},userland:i})},93307:(e,t,r)=>{r.d(t,{A:()=>a});var i=r(56037),n=r.n(i);let a=async()=>{try{await n().connect(process.env.MONGODB_URI,{useNewUrlParser:!0,useUnifiedTopology:!0}),console.log("Erfolgreich mit der MongoDB-Datenbank verbunden.")}catch(e){throw console.error(`Fehler beim Verbinden mit der MongoDB-Datenbank: ${e.message}`),console.error("Stack-Trace: ",e.stack),Error("Verbindung zur MongoDB fehlgeschlagen.")}}},99761:(e,t,r)=>{Object.defineProperty(t,"__esModule",{value:!0});let i=r(96797)._(r(56037)),n=new i.default.Schema({type:{type:String,required:!0},title:{type:String,required:!0},createdAt:{type:Date,default:Date.now},author:{type:String,required:!1},data:{type:i.default.Schema.Types.Mixed,required:!0}},{timestamps:!0}),a=i.default.models.MedicalDocument||i.default.model("MedicalDocument",n);e.exports=a},64102:(e,t,r)=>{Object.defineProperty(t,"__esModule",{value:!0});let i=r(96797)._(r(56037)),n=new i.default.Schema({full_name:{type:String,required:!0},insurance:{type:String,required:!0},is_private:{type:String,required:!0},birth_date:{type:Date,required:!0},gender:{type:String,required:!0},address:{type:String,required:!0},phoneNumber:{type:String,required:!0},documents:{type:[i.default.Schema.Types.ObjectId],ref:"MedicalDocument",default:[]},email:{type:String,required:!0,match:[/.+\@.+\..+/,"Please provide a valid email address."]},emergency_contact:{type:String,required:!0},practice:{type:i.default.Schema.Types.ObjectId,ref:"Practice",required:!0}},{timestamps:!0}),a=i.default.models.Patient||i.default.model("Patient",n);e.exports=a},42284:(e,t,r)=>{Object.defineProperty(t,"__esModule",{value:!0});let i=r(96797)._(r(56037)),n=new i.default.Schema({practice:{type:i.default.Schema.Types.ObjectId,ref:"Practice",required:!0},title:{type:String,required:!1},first_name:{type:String,required:!0},surname:{type:String,required:!0},birth_date:{type:Date,required:!0},gender:{type:String,required:!0},email:{type:String,required:!0,unique:!0,match:[/.+\@.+\..+/,"Please provide a valid email address."]},phoneNumber:{type:String,required:!0},country:{type:String,required:!0},city:{type:String,required:!0},address:{type:String,required:!0},password:{type:String,required:!0},role:{type:String,required:!0,enum:["practitioner","nurse","administration"]},verificationCode:String,verificationToken:String,expirationTime:Date,isVerified:{type:Boolean,default:!1},termsAccepted:{type:Boolean,required:!0,default:!1}},{timestamps:!0}),a=i.default.models.User||i.default.model("User",n);e.exports=a},2706:(e,t)=>{Object.defineProperty(t,"A",{enumerable:!0,get:function(){return r}});var r=function(e){return e.PAGES="PAGES",e.PAGES_API="PAGES_API",e.APP_PAGE="APP_PAGE",e.APP_ROUTE="APP_ROUTE",e.IMAGE="IMAGE",e}({})},89947:(e,t,r)=>{e.exports=r(75600)},96797:(e,t)=>{t._=function(e){return e&&e.__esModule?e:{default:e}}}};var t=require("../../../webpack-api-runtime.js");t.C(e);var r=t(t.s=70697);module.exports=r})();
+"use strict";
+(() => {
+var exports = {};
+exports.id = 9951;
+exports.ids = [9951];
+exports.modules = {
+
+/***/ 3164:
+/***/ ((module, exports, __webpack_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({
+    value: true
+}));
+const _interopRequireDefault = (__webpack_require__(4956)/* ["default"] */ .Z);
+const _mongoose = /*#__PURE__*/ _interopRequireDefault(__webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'mongoose'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
+const medical_document = new _mongoose.default.Schema({
+    type: {
+        type: String,
+        required: true
+    },
+    title: {
+        type: String,
+        required: true
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    author: {
+        type: String,
+        required: false
+    },
+    data: {
+        type: _mongoose.default.Schema.Types.Mixed,
+        required: true
+    }
+}, {
+    timestamps: true
+});
+const MedicalDocument = _mongoose.default.models.MedicalDocument || _mongoose.default.model("MedicalDocument", medical_document);
+module.exports = MedicalDocument;
+
+
+/***/ }),
+
+/***/ 5073:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ handler)
+/* harmony export */ });
+/* harmony import */ var _libs_medical_db__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7966);
+/* harmony import */ var _models_User__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6309);
+/* harmony import */ var _models_User__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_models_User__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _models_Patient__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(635);
+/* harmony import */ var _models_Patient__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_models_Patient__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _models_MedicalDocument__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(3164);
+/* harmony import */ var _models_MedicalDocument__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_models_MedicalDocument__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+async function handler(req, res) {
+    if (req.method === "GET") {
+        try {
+            await (0,_libs_medical_db__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z)();
+            const { patient_id  } = req.query;
+            console.log(patient_id);
+            if (!patient_id) {
+                return res.status(400).json({
+                    message: "Patient ID is required"
+                });
+            }
+            const patient = await _models_Patient__WEBPACK_IMPORTED_MODULE_2___default().findById(patient_id);
+            console.log("PATIENT ", patient);
+            if (!patient) {
+                return res.status(404).json({
+                    message: "Patient not found"
+                });
+            }
+            const documents = await _models_MedicalDocument__WEBPACK_IMPORTED_MODULE_3___default().find({
+                _id: {
+                    $in: patient.documents
+                }
+            });
+            console.log("Documents ", documents);
+            res.status(200).json(documents);
+        } catch (err) {
+            console.error(err.message);
+            res.status(500).json({
+                message: "Error fetching documents"
+            });
+        }
+    } else {
+        res.status(405).json({
+            message: "Method Not Allowed"
+        });
+    }
+}
+
+
+/***/ })
+
+};
+;
+
+// load runtime
+var __webpack_require__ = require("../../../webpack-api-runtime.js");
+__webpack_require__.C(exports);
+var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
+var __webpack_exports__ = __webpack_require__.X(0, [6309,9840], () => (__webpack_exec__(5073)));
+module.exports = __webpack_exports__;
+
+})();

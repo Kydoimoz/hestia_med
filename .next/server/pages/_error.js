@@ -1,1 +1,148 @@
-"use strict";(()=>{var e={};e.id=2731,e.ids=[636,2731,3220],e.modules={30671:(e,t)=>{Object.defineProperty(t,"M",{enumerable:!0,get:function(){return function e(t,r){return r in t?t[r]:"then"in t&&"function"==typeof t.then?t.then(t=>e(t,r)):"function"==typeof t&&"default"===r?t:void 0}}})},54129:(e,t,r)=>{r.r(t),r.d(t,{config:()=>f,default:()=>d,getServerSideProps:()=>p,getStaticPaths:()=>c,getStaticProps:()=>u,reportWebVitals:()=>g,routeModule:()=>S,unstable_getServerProps:()=>b,unstable_getServerSideProps:()=>m,unstable_getStaticParams:()=>P,unstable_getStaticPaths:()=>x,unstable_getStaticProps:()=>h});var o=r(63865),i=r(9455),n=r(30671),s=r(49407),a=r(19473),l=r(33532);let d=(0,n.M)(l,"default"),u=(0,n.M)(l,"getStaticProps"),c=(0,n.M)(l,"getStaticPaths"),p=(0,n.M)(l,"getServerSideProps"),f=(0,n.M)(l,"config"),g=(0,n.M)(l,"reportWebVitals"),h=(0,n.M)(l,"unstable_getStaticProps"),x=(0,n.M)(l,"unstable_getStaticPaths"),P=(0,n.M)(l,"unstable_getStaticParams"),b=(0,n.M)(l,"unstable_getServerProps"),m=(0,n.M)(l,"unstable_getServerSideProps"),S=new o.PagesRouteModule({definition:{kind:i.A.PAGES,page:"/_error",pathname:"/_error",bundlePath:"",filename:""},components:{App:a.default,Document:s.default},userland:l})},33532:(e,t,r)=>{Object.defineProperty(t,"__esModule",{value:!0}),Object.defineProperty(t,"default",{enumerable:!0,get:function(){return u}});let o=r(99929),i=r(8732),n=o._(r(82015)),s=o._(r(44426)),a={400:"Bad Request",404:"This page could not be found",405:"Method Not Allowed",500:"Internal Server Error"};function l(e){let{res:t,err:r}=e;return{statusCode:t&&t.statusCode?t.statusCode:r?r.statusCode:404}}let d={error:{fontFamily:'system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"',height:"100vh",textAlign:"center",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center"},desc:{lineHeight:"48px"},h1:{display:"inline-block",margin:"0 20px 0 0",paddingRight:23,fontSize:24,fontWeight:500,verticalAlign:"top"},h2:{fontSize:14,fontWeight:400,lineHeight:"28px"},wrap:{display:"inline-block"}};class u extends n.default.Component{render(){let{statusCode:e,withDarkMode:t=!0}=this.props,r=this.props.title||a[e]||"An unexpected error has occurred";return(0,i.jsxs)("div",{style:d.error,children:[(0,i.jsx)(s.default,{children:(0,i.jsx)("title",{children:e?e+": "+r:"Application error: a client-side exception has occurred"})}),(0,i.jsxs)("div",{style:d.desc,children:[(0,i.jsx)("style",{dangerouslySetInnerHTML:{__html:"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}"+(t?"@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}":"")}}),e?(0,i.jsx)("h1",{className:"next-error-h1",style:d.h1,children:e}):null,(0,i.jsx)("div",{style:d.wrap,children:(0,i.jsxs)("h2",{style:d.h2,children:[this.props.title||e?r:(0,i.jsx)(i.Fragment,{children:"Application error: a client-side exception has occurred (see the browser console for more information)"}),"."]})})]})]})}}u.displayName="ErrorPage",u.getInitialProps=l,u.origGetInitialProps=l,("function"==typeof t.default||"object"==typeof t.default&&null!==t.default)&&void 0===t.default.__esModule&&(Object.defineProperty(t.default,"__esModule",{value:!0}),Object.assign(t.default,t),e.exports=t.default)},49407:(e,t,r)=>{r.r(t),r.d(t,{default:()=>n});var o=r(8732),i=r(20883);function n(){return(0,o.jsxs)(i.Html,{lang:"en",children:[(0,o.jsx)(i.Head,{}),(0,o.jsxs)("body",{children:[(0,o.jsx)(i.Main,{}),(0,o.jsx)(i.NextScript,{})]})]})}},9455:(e,t)=>{Object.defineProperty(t,"A",{enumerable:!0,get:function(){return r}});var r=function(e){return e.PAGES="PAGES",e.PAGES_API="PAGES_API",e.APP_PAGE="APP_PAGE",e.APP_ROUTE="APP_ROUTE",e.IMAGE="IMAGE",e}({})},4722:e=>{e.exports=require("next-auth/react")},32270:e=>{e.exports=require("next-themes")},40361:e=>{e.exports=require("next/dist/compiled/next-server/pages.runtime.prod.js")},82015:e=>{e.exports=require("react")},22326:e=>{e.exports=require("react-dom")},8732:e=>{e.exports=require("react/jsx-runtime")},29021:e=>{e.exports=require("fs")},33873:e=>{e.exports=require("path")},27910:e=>{e.exports=require("stream")},74075:e=>{e.exports=require("zlib")}};var t=require("../webpack-runtime.js");t.C(e);var r=e=>t(t.s=e),o=t.X(0,[585,1860,883,9473],()=>r(54129));module.exports=o})();
+"use strict";
+(() => {
+var exports = {};
+exports.id = 4820;
+exports.ids = [4820];
+exports.modules = {
+
+/***/ 1049:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({
+    value: true
+}));
+exports["default"] = void 0;
+var _interop_require_default = (__webpack_require__(5558)/* ["default"] */ .Z);
+var _react = _interop_require_default(__webpack_require__(6689));
+var _head = _interop_require_default(__webpack_require__(4957));
+const statusCodes = {
+    400: "Bad Request",
+    404: "This page could not be found",
+    405: "Method Not Allowed",
+    500: "Internal Server Error"
+};
+function _getInitialProps({ res , err  }) {
+    const statusCode = res && res.statusCode ? res.statusCode : err ? err.statusCode : 404;
+    return {
+        statusCode
+    };
+}
+const styles = {
+    error: {
+        fontFamily: '-apple-system, BlinkMacSystemFont, Roboto, "Segoe UI", "Fira Sans", Avenir, "Helvetica Neue", "Lucida Grande", sans-serif',
+        height: "100vh",
+        textAlign: "center",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    desc: {
+        display: "inline-block",
+        textAlign: "left",
+        lineHeight: "49px",
+        height: "49px",
+        verticalAlign: "middle"
+    },
+    h1: {
+        display: "inline-block",
+        margin: 0,
+        marginRight: "20px",
+        padding: "0 23px 0 0",
+        fontSize: "24px",
+        fontWeight: 500,
+        verticalAlign: "top",
+        lineHeight: "49px"
+    },
+    h2: {
+        fontSize: "14px",
+        fontWeight: "normal",
+        lineHeight: "49px",
+        margin: 0,
+        padding: 0
+    }
+};
+var _Component;
+class Error extends (_Component = _react.default.Component) {
+    render() {
+        const { statusCode , withDarkMode =true  } = this.props;
+        const title = this.props.title || statusCodes[statusCode] || "An unexpected error has occurred";
+        return /*#__PURE__*/ _react.default.createElement("div", {
+            style: styles.error
+        }, /*#__PURE__*/ _react.default.createElement(_head.default, null, /*#__PURE__*/ _react.default.createElement("title", null, statusCode ? `${statusCode}: ${title}` : "Application error: a client-side exception has occurred")), /*#__PURE__*/ _react.default.createElement("div", null, /*#__PURE__*/ _react.default.createElement("style", {
+            dangerouslySetInnerHTML: {
+                __html: `
+                body { margin: 0; color: #000; background: #fff; }
+                .next-error-h1 {
+                  border-right: 1px solid rgba(0, 0, 0, .3);
+                }
+
+                ${withDarkMode ? `@media (prefers-color-scheme: dark) {
+                  body { color: #fff; background: #000; }
+                  .next-error-h1 {
+                    border-right: 1px solid rgba(255, 255, 255, .3);
+                  }
+                }` : ""}`
+            }
+        }), statusCode ? /*#__PURE__*/ _react.default.createElement("h1", {
+            className: "next-error-h1",
+            style: styles.h1
+        }, statusCode) : null, /*#__PURE__*/ _react.default.createElement("div", {
+            style: styles.desc
+        }, /*#__PURE__*/ _react.default.createElement("h2", {
+            style: styles.h2
+        }, this.props.title || statusCode ? title : /*#__PURE__*/ _react.default.createElement(_react.default.Fragment, null, "Application error: a client-side exception has occurred (see the browser console for more information)"), "."))));
+    }
+}
+Error.displayName = "ErrorPage";
+Error.getInitialProps = _getInitialProps;
+Error.origGetInitialProps = _getInitialProps;
+exports["default"] = Error; //# sourceMappingURL=_error.js.map
+
+
+/***/ }),
+
+/***/ 5558:
+/***/ ((__unused_webpack_module, exports) => {
+
+var __webpack_unused_export__;
+
+__webpack_unused_export__ = ({
+    value: true
+});
+exports.Z = _interopRequireDefault;
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
+
+
+/***/ }),
+
+/***/ 4957:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/head.js");
+
+/***/ }),
+
+/***/ 6689:
+/***/ ((module) => {
+
+module.exports = require("react");
+
+/***/ })
+
+};
+;
+
+// load runtime
+var __webpack_require__ = require("../webpack-runtime.js");
+__webpack_require__.C(exports);
+var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
+var __webpack_exports__ = (__webpack_exec__(1049));
+module.exports = __webpack_exports__;
+
+})();
