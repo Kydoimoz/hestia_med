@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from "react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
@@ -745,8 +744,3 @@ console.log("Formatted Birth Date:", formattedDate);
         </div>
     );
 }
-=======
-version https://git-lfs.github.com/spec/v1
-oid sha256:884204f34ab6253306af32ce54d0a05753411e43ad41ad7f47656c98031445c1
-size 38437
->>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

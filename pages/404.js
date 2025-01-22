@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import styles from "../styles/NotFound.module.css";
@@ -61,8 +61,3 @@ export async function getStaticProps() {
 }
 
 export default NotFoundPage;
-=======
-version https://git-lfs.github.com/spec/v1
-oid sha256:10551c21bc6fd9ecca2e5d202470768c44c7a67d7997eb0339666e897de99795
-size 1861
->>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a
