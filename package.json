@@ -6,7 +6,8 @@
     "dev": "next dev",
     "start": "next start",
     "build": "next build",
-    "prod": "next export"
+    "prod": "next export",
+    "postinstall": "npm install --legacy-peer-deps"
   },
   "dependencies": {
     "@emotion/css": "^11.1.3",
