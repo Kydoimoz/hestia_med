@@ -55,7 +55,8 @@
     "run": "^1.5.0",
     "shadcn": "^2.1.8",
     "tailwindcss": "^3.4.17",
-    "three": "^0.172.0"
+    "three": "^0.172.0",
+    "@svgr/webpack": "^8.1.0"
   },
   "engines": {
     "node": ">=18"
