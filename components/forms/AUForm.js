@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState } from "react";
 import classes from './AUForm.module.css';
 
@@ -179,3 +180,8 @@ export default function AUForm({ document, onSave, mode }) {
     </form>
   );
 }
+=======
+version https://git-lfs.github.com/spec/v1
+oid sha256:fa9de0dc663ea0502e10cb399da4119fea4866a43b1c421aa32056bcb99e9a97
+size 5556
+>>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

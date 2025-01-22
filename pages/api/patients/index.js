@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import * as React from "react";
 import connectDB from "../../../libs/medical_db";
 import Patient from "../../../models/Patient";
@@ -48,3 +49,8 @@ export default async function handler(req, res){
         res.status(405).json({ message: `Methode ${req.method} nicht erlaubt.` });
       }
 }
+=======
+version https://git-lfs.github.com/spec/v1
+oid sha256:4c99a6e569239fe0d09fa6a941b08f61aaedead2f10001555a43712774e62ec4
+size 1551
+>>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

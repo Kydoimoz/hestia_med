@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 
 const AGB = () => {
@@ -117,3 +118,8 @@ const AGB = () => {
 };
 
 export default AGB;
+=======
+version https://git-lfs.github.com/spec/v1
+oid sha256:09127310cc0f60a41c466fffec25c7bbb8f1662d4961a6bb6c0c998f9976edbf
+size 5323
+>>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import classes from "./UntersuchungsprotokollForm.module.css";
 
@@ -148,3 +149,8 @@ export default function UntersuchungsprotokollForm({ sampleDocuments, setSampleD
     </div>
   );
 }
+=======
+version https://git-lfs.github.com/spec/v1
+oid sha256:33a64aef6073cdb111921f48888fa97c1710552f03c7e30f2b8871229c2440b5
+size 4457
+>>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

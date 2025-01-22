@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const path = require('path')
 
 const dir = path.join(__dirname)
@@ -36,3 +37,8 @@ startServer({
   console.error(err);
   process.exit(1);
 });
+=======
+version https://git-lfs.github.com/spec/v1
+oid sha256:18236847fe340d5b730dc51cedcbf572d9b49c41320d8af20eab59ad76c5f5da
+size 5847
+>>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

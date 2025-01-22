@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import connectDB from "../../../libs/medical_db";
 import { ObjectId } from "mongodb";
 
@@ -64,3 +65,8 @@ export default async function handler(req, res) {
     res.status(500).json({ error: "Internal Server Error" });
   }
 }
+=======
+version https://git-lfs.github.com/spec/v1
+oid sha256:edf23d349aaa9039d07046b1ce1e0d25984d8478240a9bbb9e4c6b9cc25e73df
+size 1839
+>>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

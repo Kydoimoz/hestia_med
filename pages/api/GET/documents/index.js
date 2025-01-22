@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import connectDB from "../../../../libs/medical_db";
 import User from "../../../../models/User";
 import Patient from "../../../../models/Patient";
@@ -30,3 +31,8 @@ export default async function handler(req, res) {
     }
   }
   
+=======
+version https://git-lfs.github.com/spec/v1
+oid sha256:4c27f835e4cc31d19c0ef425beea037c5ecef5e06cac2ed1f712387b4aa2c40a
+size 1186
+>>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import classes from "./settings.module.css";
 
@@ -341,3 +342,8 @@ export default function Settings() {
     </div>
   );
 }
+=======
+version https://git-lfs.github.com/spec/v1
+oid sha256:e7a0a7d791bbb0d995334c95e780b3646c37ab4b0f30f039fc0af9ecbaa43122
+size 10541
+>>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

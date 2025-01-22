@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import * as React from "react";
 import classes from "./login_form.module.css";
 import * as THREE from "three";
@@ -266,3 +267,8 @@ export default function Login(){
         </div>
     );
 }
+=======
+version https://git-lfs.github.com/spec/v1
+oid sha256:719af3ae945a74bc8be95f67f2a3fe8a7e8fd974fb0282fce7d753b92408c06e
+size 11178
+>>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

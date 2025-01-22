@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import connectDB from "../../../libs/medical_db";
 import User from "../../../models/User";
 export async function fetchUpdatedUserData(userID) {
@@ -19,3 +20,8 @@ export async function fetchUpdatedUserData(userID) {
         throw new Error("Fehler beim Abrufen der Benutzerdaten");
     }
 }
+=======
+version https://git-lfs.github.com/spec/v1
+oid sha256:0eedbc3576b9f8915aa8043c850a747260b09d389cffbf945a0f5e382280c8f7
+size 783
+>>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

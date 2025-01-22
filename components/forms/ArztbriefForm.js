@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import classes from "./AnamneseForm.module.css"
 import { useState } from "react";
 
@@ -164,3 +165,8 @@ export default function ArztbriefForm({ document, onSave, mode }) {
     </form>
   );
 }
+=======
+version https://git-lfs.github.com/spec/v1
+oid sha256:a2455efae9b02ec34d3014d55ac9305bdacdaf0dcd8fb0e236ff67862b2666d9
+size 4416
+>>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import connectDB from "../../../libs/medical_db";
 import User from "../../../models/User";
 import NextAuth from "next-auth";
@@ -195,3 +196,8 @@ const handler = NextAuth(authOptions);
 export default handler;
 export const GET = (req, res) => handler.handleRequest(req, res, { ...authOptions });
 export const POST = (req, res) => handler.handleRequest(req, res, { ...authOptions });
+=======
+version https://git-lfs.github.com/spec/v1
+oid sha256:31b429e251548fe1c435fbe5b6af528eed2b6b4b0c8d68e17457a7aa024334b0
+size 7713
+>>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

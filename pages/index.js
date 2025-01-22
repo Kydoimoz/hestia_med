@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Head from "next/head";
 import Hero from "../components/hero";
 import Navbar from "../components/navbar";
@@ -65,3 +66,8 @@ Die Cloud-basierte Architektur sorgt für eine sichere und jederzeit zugänglich
     </>
   );
 }
+=======
+version https://git-lfs.github.com/spec/v1
+oid sha256:a4bf36d40fc04d27ec17d33cae468e2fcdbefec915fd52a486ed07699d5e838f
+size 2657
+>>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import connectDB from "../../../libs/medical_db";
 import User from "../../../models/User";
 import bcrypt from 'bcryptjs';
@@ -133,3 +134,8 @@ const deleteExpiredUsers = async () => {
 };
 
 schedule.scheduleJob('*/2 * * * *', deleteExpiredUsers);
+=======
+version https://git-lfs.github.com/spec/v1
+oid sha256:ebf46e24f1c1427535ba145496f7202018f62f0fea0d3b1a773a132eceb91458
+size 4572
+>>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

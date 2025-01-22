@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Image from "next/image";
 import React from "react";
 import Container from "./container";
@@ -89,3 +90,8 @@ function Mark(props) {
     </>
   );
 }
+=======
+version https://git-lfs.github.com/spec/v1
+oid sha256:5a162994478e72b0da59d3031fa23df753a90fd312f076aa7fc86c0c66feb4b8
+size 3142
+>>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a

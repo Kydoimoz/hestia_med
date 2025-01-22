@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 "use client";
 import { useRouter } from "next/router";
 import Header from "./Header";
@@ -30,3 +31,8 @@ export default function Layout({ children }) {
         </SessionProviderWrapper>
     );
 }
+=======
+version https://git-lfs.github.com/spec/v1
+oid sha256:f5131cef0f7cb98bcaa44a48c363fff3ecd76fc6d05ad0b9ec2f99c39024cd0f
+size 1264
+>>>>>>> 27aa36463c4f1ad2a7c8c8bc2ccada08a4bca70a
