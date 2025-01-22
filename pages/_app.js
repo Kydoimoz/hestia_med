@@ -1,6 +1,5 @@
-
-import "./../styles/global.css"
-import "./../styles/calendar.css"
+import "./../styles/global.css";
+import "./../styles/calendar.css";
 import Layout from "../components/ui/Layout";
 import AuthProviders from "./Providers";
 import { ThemeProvider } from "next-themes";
