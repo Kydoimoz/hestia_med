@@ -21,6 +21,7 @@
     "@mui/material": "^6.3.0",
     "@mui/styles": "^6.3.0",
     "@mui/x-date-pickers": "^7.23.3",
+    "@next/env": "^15.1.6",
     "@nextui-org/react": "^2.2.8",
     "@svgr/webpack": "^8.1.0",
     "@syncfusion/ej2-react-dropdowns": "^28.1.36",
